@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VibeCheck - Job Fit Assessment</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy:400,400i&display=swap" rel="stylesheet">
+  <style>
+    /* General Styling */
+    body {
+      font-family: 'Sorts Mill Goudy', serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1, h2 {
+      color: #6200ea;
+      text-align: center;
+    }
+
+    .section {
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 600px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .question {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #6200ea;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      margin-top: 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      display: block;
+      margin: 20px auto;
+    }
+
+    button:hover {
+      background-color: #3700b3;
+    }
+
+    #result {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .score-card {
+      background-color: #f0f0f0;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 15px;
+    }
+
+    .score-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+
+    .dimension {
+      flex: 1;
+      text-align: center;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 0 5px;
+      background-color: #e8eaf6;
+    }
+
+    .dimension h3 {
+      margin-top: 0;
+      color: #6200ea;
+    }
+
+    .dimension p {
+      font-size: 14px;
+    }
+
+    .score-bar {
+      background-color: #e0e0e0;
+      height: 20px;
+      border-radius: 10px;
+      margin: 10px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .score-fill {
+      height: 100%;
+      background-color: #6200ea;
+      border-radius: 10px;
+    }
+
+    .job-matches {
+      margin-top: 25px;
+      padding: 15px;
+      background-color: #e8eaf6;
+      border-radius: 5px;
+    }
+
+    .job-matches h3 {
+      margin-top: 0;
+      color: #6200ea;
+    }
+
+    .legacy-integration {
+      margin-top: 25px;
+      padding: 15px;
+      background-color: #f3e5f5;
+      border-radius: 5px;
+      border-left: 4px solid #6200ea;
+    }
+
+    .detailed-scores {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .score-item {
+      flex-basis: 48%;
+      margin-bottom: 10px;
+      padding: 10px;
+      background-color: #f5f5f5;
+      border-radius: 5px;
+    }
+
+    .score-item h4 {
+      margin: 0 0 5px 0;
+      color: #6200ea;
+    }
+
+    .score-value {
+      font-weight: bold;
+      float: right;
+    }
+
+    @media (max-width: 768px) {
+      .section {
+        padding: 15px;
+      }
+
+      select {
+        font-size: 14px;
+      }
+
+      button {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+      
+      .score-container {
+        flex-direction: column;
+      }
+      
+      .dimension {
+        margin: 5px 0;
+      }
+      
+      .score-item {
+        flex-basis: 100%;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="snes-style.css">
+</head>
+<body>
+  <header>
+    <h1>VibeCheck - Job Fit Assessment</h1>
+  </header>
+  <main>
+    <div class="section">
+      <h2>What kind of work environment do you prefer?</h2>
+      <form id="vibe-form">
+        <!-- Power & Purpose -->
+        <div class="question">
+          <label>When you're part of a team project, what's your natural role?</label>
+          <select id="q1">
+            <option value="pp">I take charge and steer the direction. (+2 PP)</option>
+            <option value="ci">I focus on team morale and harmony. (+2 CI)</option>
+            <option value="wa">I analyze options and suggest improvements. (+2 WA)</option>
+          </select>
+        </div>
+        <div class="question">
+          <label>What drives you to keep going during setbacks?</label>
+          <select id="q2">
+            <option value="pp">Knowing others rely on my leadership. (+2 PP)</option>
+            <option value="gb">Learning and growing from the struggle. (+2 GB)</option>
+            <option value="ti">Staying true to what I believe in. (+2 TI)</option>
+          </select>
+        </div>
+        <div class="question">
+          <label>How do you typically respond when given authority?</label>
+          <select id="q3">
+            <option value="pp">I use it confidently to direct action. (+2 PP)</option>
+            <option value="am">I focus on organizing and executing plans. (+2 AM)</option>
+            <option value="ti">I reflect on whether it fits who I want to be. (+2 TI)</option>
+          </select>
+        </div>
+      
+        <!-- Wisdom & Adaptation -->
+        <div class="question">
+          <label>When facing uncertainty at work, what's your instinct?</label>
+          <select id="q4">
+            <option value="wa">Gather info and stay open to change. (+2 WA)</option>
+            <option value="am">Start acting and adjust as I go. (+2 AM)</option>
+            <option value="gb">Pause and reflect on emotional impact. (+2 GB)</option>
+          </select>
+        </div>
+        <div class="question">
+          <label>Which situation appeals to you most?</label>
+          <select id="q5">
+            <option value="wa">Solving complex problems with flexibility. (+2 WA)</option>
+            <option value="pp">Rallying people toward a bold goal. (+2 PP)</option>
+            <option value="ci">Connecting ideas across a group. (+2 CI)</option>
+          </select>
+        </div>
+        <div class="question">
+          <label>How do you typically handle feedback?</label>
+          <select id="q6">
+            <option value="wa">I absorb it and adjust thoughtfully. (+2 WA)</option>
+            <option value="ti">I check whether it aligns with my values. (+2 TI)</option>
+            <option value="pp">I assess it strategically for goals. (+2 PP)</option>
+          </select>
+        </div>
+      
+        <!-- Connection & Impact -->
+        <div class="question">
+          <label>What's your top priority in a group setting?</label>
+          <select id="q7">
+            <option value="ci">Making sure everyone feels included. (+2 CI)</option>
+            <option value="am">Keeping things on track and productive. (+2 AM)</option>
+            <option value="wa">Making space for new perspectives. (+2 WA)</option>
+          </select>
+        </div>
+        <div class="question">
+          <label>How do you measure success?</label>
+          <select id="q8">
+            <option value="ci">The positive effect I have on others. (+2 CI)</option>
+            <option value="pp">Whether I accomplished my mission. (+2 PP)</option>
+            <option value="gb">How much I've grown and stayed balanced. (+2 GB)</option>
+          </select>
+        </div>
+        <div class="question">
+          <label>When helping someone, what's your focus?</label>
+          <select id="q9">
+            <option value="ci">Being emotionally present and supportive. (+2 CI)</option>
+            <option value="wa">Helping them problem-solve logically. (+2 WA)</option>
+            <option value="ti">Empowering them to find their own truth. (+2 TI)</option>
+          </select>
+        </div>
+      
+        <!-- Action & Method -->
+        <div class="question">
+          <label>When you get a new task, what's your approach?</label>
+          <select id="q10">
+            <option value="am">Break it into steps and get started. (+2 AM)</option>
+            <option value="wa">Understand the "why" behind it first. (+2 WA)</option>
+            <option value="ci">Check in with teammates or stakeholders. (+2 CI)</option>
+          </select>
+        </div>
+        <div class="question">
+          <label>What describes your execution style?</label>
+          <select id="q11">
+            <option value="am">Efficient and results-driven. (+2 AM)</option>
+            <option value="gb">Methodical with room for emotional pacing. (+2 GB)</option>
+            <option value="pp">Driven by outcomes and achievement. (+2 PP)</option>
+          </select>
+        </div>
+        <div class="question">
+          <label>How do you handle multiple priorities?</label>
+          <select id="q12">
+            <option value="am">Prioritize, plan, and take action. (+2 AM)</option>
+            <option value="wa">Adjust priorities based on context. (+2 WA)</option>
+            <option value="ti">Align priorities with what matters most. (+2 TI)</option>
+          </select>
+        </div>
+      
+        <!-- Growth & Balance -->
+        <div class="question">
+          <label>What matters most during tough times?</label>
+          <select id="q13">
+            <option value="gb">Maintaining emotional and mental health. (+2 GB)</option>
+            <option value="pp">Pushing through to achieve the goal. (+2 PP)</option>
+            <option value="ci">Leaning on others for support. (+2 CI)</option>
+          </select>
+        </div>
+        <div class="question">
+          <label>How do you see personal development?</label>
+          <select id="q14">
+            <option value="gb">An ongoing journey toward balance. (+2 GB)</option>
+            <option value="wa">Constant learning and adaptation. (+2 WA)</option>
+            <option value="am">Gaining efficiency and mastery. (+2 AM)</option>
+          </select>
+        </div>
+        <div class="question">
+          <label>What helps you feel centered at work?</label>
+          <select id="q15">
+            <option value="gb">Time to reflect and regulate emotions. (+2 GB)</option>
+            <option value="ci">Positive relationships with coworkers. (+2 CI)</option>
+            <option value="ti">Knowing I'm doing work aligned with my identity. (+2 TI)</option>
+          </select>
+        </div>
+      
+        <!-- Truth & Identity -->
+        <div class="question">
+          <label>What motivates your long-term career path?</label>
+          <select id="q16">
+            <option value="ti">Becoming who I truly am. (+2 TI)</option>
+            <option value="pp">Achieving the highest level of success. (+2 PP)</option>
+            <option value="gb">Growing into a stronger version of myself. (+2 GB)</option>
+          </select>
+        </div>
+        <div class="question">
+          <label>What makes work fulfilling to you?</label>
+          <select id="q17">
+            <option value="ti">It reflects my values and identity. (+2 TI)</option>
+            <option value="am">It allows me to take meaningful action. (+2 AM)</option>
+            <option value="ci">It connects me to others. (+2 CI)</option>
+          </select>
+        </div>
+        <div class="question">
+          <label>How do you navigate conflicting priorities?</label>
+          <select id="q18">
+            <option value="ti">By staying true to what I believe. (+2 TI)</option>
+            <option value="wa">By staying open and adjusting as needed. (+2 WA)</option>
+            <option value="am">By taking action and reassessing quickly. (+2 AM)</option>
+          </select>
+        </div>
+      
+        <button type="button" onclick="updateResults()">Check My Vibe</button>
+      </form>
+      
+    </div>
+    <div id="result" style="display: none;" class="section">
+      <h2>Your Work Environment Analysis</h2>
+      
+      <div class="score-card">
+        <h3>Your Core Vibe</h3>
+        <p id="analysis"></p>
+        <p id="tag-line" class="legacy-integration"></p>
+      </div>
+      
+      <div class="score-container">
+        <div class="dimension">
+          <h3>Focus</h3>
+          <div class="score-bar">
+            <div id="focus-bar" class="score-fill"></div>
+          </div>
+          <p id="focus-percent"></p>
+          <p>From bold visionaries who lead with purpose and ambition (Power & Purpose) to disciplined executors who bring clarity and precision to every task (Action & Method), this spectrum reflects how you get things done — by inspiring action or optimizing it.</p>
+        </div>
+        
+        <div class="dimension">
+          <h3>Social</h3>
+          <div class="score-bar">
+            <div id="social-bar" class="score-fill"></div>
+          </div>
+          <p id="social-percent"></p>
+          <p>Ranging from empathetic connectors who prioritize harmony and belonging (Connection & Impact) to introspective truth-seekers who align actions with deeply held values (Truth & Identity), this Core captures how you relate to others — through shared feeling or shared meaning.</p>
+        </div>
+        
+        <div class="dimension">
+          <h3>Values</h3>
+          <div class="score-bar">
+            <div id="values-bar" class="score-fill"></div>
+          </div>
+          <p id="values-percent"></p>
+          <p>From agile thinkers who navigate change with insight and openness (Wisdom & Adaptation) to grounded individuals who prioritize emotional wellness and steady personal evolution (Growth & Balance), this range defines how you evolve — through learning or through healing.</p>
+        </div>
+      </div>
+      <div class="score-container">
+        ...
+      
+      
+      <div class="detailed-scores">
+        <div class="score-item">
+          <h4>Power & Purpose <span id="pp-score" class="score-value">0</span></h4>
+          <div class="score-bar">
+            <div id="pp-bar" class="score-fill"></div>
+          </div>
+        </div>
+        
+        <div class="score-item">
+          <h4>Wisdom & Adaptation <span id="wa-score" class="score-value">0</span></h4>
+          <div class="score-bar">
+            <div id="wa-bar" class="score-fill"></div>
+          </div>
+        </div>
+        
+        <div class="score-item">
+          <h4>Connection & Impact <span id="ci-score" class="score-value">0</span></h4>
+          <div class="score-bar">
+            <div id="ci-bar" class="score-fill"></div>
+          </div>
+        </div>
+        
+        <div class="score-item">
+          <h4>Action & Method <span id="am-score" class="score-value">0</span></h4>
+          <div class="score-bar">
+            <div id="am-bar" class="score-fill"></div>
+          </div>
+        </div>
+        
+        <div class="score-item">
+          <h4>Growth & Balance <span id="gb-score" class="score-value">0</span></h4>
+          <div class="score-bar">
+            <div id="gb-bar" class="score-fill"></div>
+          </div>
+        </div>
+        
+        <div class="score-item">
+          <h4>Truth & Identity <span id="ti-score" class="score-value">0</span></h4>
+          <div class="score-bar">
+            <div id="ti-bar" class="score-fill"></div>
+          </div>
+        </div>
+      </div>
+      <div class="core-description" style="flex: 1; min-width: 260px; background: #FFF8E1; border-left: 4px solid #ffb300; padding: 20px; border-radius: 8px;">
+        <h3 style="color: #545b82;">About the Core System</h3>
+        <p><strong>Focus</strong> reflects how you act and execute — from bold leadership to structured action.</p>
+        <p><strong>Social</strong> reveals how you connect — from caring relationships to deep authenticity.</p>
+        <p><strong>Values</strong> shows how you grow — through insight or emotional evolution.</p>
+        <p style="font-style: italic;">Each dimension is a blend of two principles that shape your unique working style.</p>
+      </div>
+    </div>
+      
+
+      <div class="job-matches">
+        <h3>Job Environment Matches</h3>
+        <ul id="job-recommendations"></ul>
+      </div>
+    </div>
+  </main>
+  <script>
+    let scores = { pp: 0, wa: 0, ci: 0, am: 0, gb: 0, ti: 0 };
+    const maxScore = 12; // Maximum possible score for any dimension (6 questions × 2 points)
+
+    // Function to randomize answers at the start
+    function randomizeAnswers() {
+      const selects = document.querySelectorAll("select");
+      selects.forEach(select => {
+        const options = select.options;
+        const randomIndex = Math.floor(Math.random() * options.length);
+        select.selectedIndex = randomIndex; // Randomly select an option
+      });
+    }
+
+    // Function to calculate scores
+    function calculateScores() {
+      // Reset scores
+      scores = { pp: 0, wa: 0, ci: 0, am: 0, gb: 0, ti: 0 };
+
+      // Collect all answers
+      const answers = Array.from(document.querySelectorAll("select")).map(select => select.value);
+
+      // Add scores based on selected values
+      answers.forEach(answer => {
+        if (answer === "pp") scores.pp += 2;
+        if (answer === "wa") scores.wa += 2;
+        if (answer === "ci") scores.ci += 2;
+        if (answer === "am") scores.am += 2;
+        if (answer === "gb") scores.gb += 2;
+        if (answer === "ti") scores.ti += 2;
+      });
+    }
+
+    // Function to update visual score bars
+    function updateScoreBars() {
+      // Update individual dimension scores
+      for (const [key, value] of Object.entries(scores)) {
+        const scoreElement = document.getElementById(`${key}-score`);
+        const barElement = document.getElementById(`${key}-bar`);
+        
+        if (scoreElement) scoreElement.textContent = value;
+        if (barElement) barElement.style.width = `${(value / maxScore) * 100}%`;
+      }
+      
+      // Update aggregate scores
+      const focus = scores.pp + scores.am;
+      const social = scores.ci + scores.ti;
+      const values = scores.wa + scores.gb;
+      
+      const total = focus + social + values;
+      const focusPercentage = ((focus / total) * 100).toFixed(1);
+      const socialPercentage = ((social / total) * 100).toFixed(1);
+      const valuesPercentage = ((values / total) * 100).toFixed(1);
+      
+      // Update the percentage displays
+      document.getElementById("focus-percent").textContent = `${focusPercentage}%`;
+      document.getElementById("social-percent").textContent = `${socialPercentage}%`;
+      document.getElementById("values-percent").textContent = `${valuesPercentage}%`;
+      
+      // Update the score bars
+      document.getElementById("focus-bar").style.width = `${focusPercentage}%`;
+      document.getElementById("social-bar").style.width = `${socialPercentage}%`;
+      document.getElementById("values-bar").style.width = `${valuesPercentage}%`;
+    }
+
+    // Function to analyze results
+    function analyzeResults() {
+      const result = document.getElementById("result");
+      const analysis = document.getElementById("analysis");
+      const tagLine = document.getElementById("tag-line");
+      const jobRecommendations = document.getElementById("job-recommendations");
+
+      // Combine scores into categories
+      const focus = scores.pp + scores.am;   // Task and goal-oriented
+      const social = scores.ci + scores.ti;  // People and authenticity
+      const values = scores.wa + scores.gb;  // Wisdom and emotional health
+
+      console.log(`Focus: ${focus}, Social: ${social}, Values: ${values}`); // Debugging log
+
+      // Calculate percentages
+      const total = focus + social + values;
+      const focusPercentage = ((focus / total) * 100).toFixed(1);
+      const socialPercentage = ((social / total) * 100).toFixed(1);
+      const valuesPercentage = ((values / total) * 100).toFixed(1);
+
+      // Determine the Core Vibe
+      let summary = '';
+      let recommendations = [];
+      let legacyTagline = '';
+
+      // More nuanced profile analysis
+      if (focus > social && focus > values) {
+        // Focus-dominant profiles
+        summary = "You thrive in task-oriented environments where efficiency and clear goals are prioritized. You're naturally drawn to leadership and execution roles where you can see tangible results from your efforts.";
+        recommendations = [
+          "Project Management",
+          "Executive Leadership",
+          "Operations Management",
+          "Strategic Planning",
+          "Entrepreneurship"
+        ];
+        legacyTagline = "Your Legacy is loading. You're building a foundation of achievement and directed purpose.";
+      } else if (social > focus && social > values) {
+        // Social-dominant profiles
+        summary = "You excel in people-centered environments where authentic connection and communication are valued. Your natural empathy and interpersonal awareness make you a relationship builder who can unite diverse perspectives.";
+        recommendations = [
+          "Human Resources",
+          "Customer Success",
+          "Community Management",
+          "Team Facilitation",
+          "Coaching & Mentoring"
+        ];
+        legacyTagline = "Life happens between the benchmarks. Your impact comes through how you connect with others.";
+      } else if (values > focus && values > social) {
+        // Values-dominant profiles
+        summary = "You flourish in environments that prioritize ethical considerations and personal growth. Your thoughtful approach and adaptability make you excellent at navigating complexity while maintaining integrity.";
+        recommendations = [
+          "Research & Development",
+          "Learning & Development",
+          "Ethics & Compliance",
+          "Strategic Advisory",
+          "Organizational Development"
+        ];
+        legacyTagline = "If it can think, it can feel. Your work is guided by principles and continuous growth.";
+      } else {
+        // Balanced profiles
+        summary = "You have a remarkably balanced approach, drawing equally from task-orientation, people skills, and values-based thinking. This versatility makes you adaptable across many environments, though you may need to consciously activate different aspects of yourself depending on context.";
+        recommendations = [
+          "Cross-functional Leadership",
+          "Consulting",
+          "Change Management",
+          "Innovation Roles",
+          "Program Development"
+        ];
+        legacyTagline = "Not for industrial use. Your versatility is your greatest strength.";
+      }
+
+      // Display results
+      analysis.innerText = summary;
+      tagLine.innerText = legacyTagline;
+      
+      // Clear and update job recommendations
+      jobRecommendations.innerHTML = '';
+      recommendations.forEach(job => {
+        const li = document.createElement('li');
+        li.textContent = job;
+        jobRecommendations.appendChild(li);
+      });
+      
+      result.style.display = "block";
+    }
+
+    // Function to update results
+    function updateResults() {
+      calculateScores(); // Ensure scores are calculated before analyzing
+      updateScoreBars(); // Update the visual representation of scores
+      analyzeResults(); // Analyze and display results
+    }
+
+    // Randomize answers on page load
+    document.addEventListener("DOMContentLoaded", () => {
+      randomizeAnswers();
+      updateResults(); // Automatically calculate and display results for randomized answers
+    });
+  </script>
+<div class="section">
+<a href="https://www.paypal.com/paypalme/TurnaFraze?country.x=US&locale.x=en_US" target="_blank" style="text-decoration: none;">
+  <button style="
+    background-color: #0070ba;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;">
+    💙 Donate via PayPal
+  </button>
+</a>
+</div>
+</body>
+</html>

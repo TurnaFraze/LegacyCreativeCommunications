@@ -1,0 +1,293 @@
+/* Base styles */
+body {
+    background: #f4e4bc;
+    color: #2c1810;
+    font-family: Georgia, serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Main grid layout */
+.page-container {
+    display: grid;
+    grid-template-columns: minmax(200px, 1fr) minmax(850px, 4fr) minmax(200px, 1fr);
+    gap: 20px;
+    padding: 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* Ad spaces */
+.ad-space-left, .ad-space-right {
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+    padding: 10px;
+}
+
+.ad-space-left {
+    grid-column: 1;
+    justify-self: end;
+}
+
+.ad-space-right {
+    grid-column: 3;
+    justify-self: start;
+}
+
+/* Main character sheet */
+.character-sheet {
+    grid-column: 2;
+    background: #fff9e6;
+    border: 8px solid transparent;
+    border-image: url('https://i.imgur.com/TJMxpV5.png') 30 stretch;
+    padding: 20px;
+    max-width: 850px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    background-image: url('bg.jpg');
+}
+
+/* Typography */
+h1, h2, h3 {
+    font-family: 'Dragon Hunter', 'MedievalSharp', cursive;
+    color: #691f01;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    border-bottom: 2px solid #8b4513;
+    padding-bottom: 5px;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.2em; }
+
+/* Form elements */
+input[type="text"], 
+input[type="number"],
+select,
+textarea {
+    background: #fff9e6;
+    border: 1px solid #8b4513;
+    padding: 6px 10px;
+    font-size: 1rem;
+    font-family: Georgia, serif;
+    color: #2c1810;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    height: auto;
+}
+
+/* Textarea specific styles */
+textarea {
+    width: 100%;
+    min-height: 100px;
+    resize: vertical;
+}
+
+textarea[name="equipment"] {
+    min-height: 150px;
+}
+
+textarea[name="features"] {
+    min-height: 200px;
+}
+
+textarea[placeholder="Character traits..."],
+textarea[placeholder="Character ideals..."],
+textarea[placeholder="Character bonds..."],
+textarea[placeholder="Character flaws..."] {
+    min-height: 80px;
+    margin-bottom: 10px;
+}
+
+/* Focus states */
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(139, 69, 19, 0.5);
+    background: #ffffff;
+}
+
+/* Checkbox styling */
+input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #8b4513;
+    border-radius: 3px;
+    background: #fff9e6;
+    position: relative;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked::before {
+    content: "✓";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #691f01;
+    font-size: 16px;
+}
+
+/* Button styling */
+#generate-btn {
+    background: linear-gradient(45deg, #691f01, #8b4513);
+    color: #fff9e6;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Dragon Hunter', 'MedievalSharp', cursive;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#generate-btn:hover {
+    background: linear-gradient(45deg, #8b4513, #691f01);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* Stats section */
+.ability-scores {
+    border: 2px solid #8b4513;
+    padding: 15px;
+    border-radius: 5px;
+    background: rgba(255,249,230,0.7);
+    font-size: 1rem;
+}
+
+/* Skills layout */
+.skills {
+    column-count: 2;
+    column-gap: 40px;
+}
+
+/* Combat stats */
+.combat-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.combat-stat {
+    background: rgba(105, 31, 1, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+/* Tooltips */
+[data-tooltip] {
+    position: relative;
+    cursor: help;
+}
+
+[data-tooltip]:after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(44, 24, 16, 0.9);
+    color: #fff9e6;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 0.8em;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+[data-tooltip]:hover:after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Animations */
+.stat-value {
+    transition: all 0.3s ease;
+}
+
+.stat-value.updated {
+    animation: highlight 1s ease;
+}
+
+@keyframes highlight {
+    0% { background-color: rgba(139, 69, 19, 0.3); }
+    100% { background-color: transparent; }
+}
+
+/* Decorative elements */
+.section-divider {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.section-divider::before,
+.section-divider::after {
+    content: "❯❯❯";
+    color: #8b4513;
+    margin: 0 10px;
+    font-size: 0.8em;
+}
+
+/* Select elements */
+select {
+    font-size: 1rem;
+    padding: 6px 12px;
+    min-width: 160px;
+    cursor: pointer;
+}
+
+select option {
+    font-size: 1rem;
+    padding: 6px;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+    .page-container {
+        grid-template-columns: minmax(160px, 1fr) minmax(600px, 3fr) minmax(160px, 1fr);
+    }
+}
+
+@media (max-width: 1024px) {
+    .page-container {
+        grid-template-columns: 100px 1fr 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-container {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+
+    .ad-space-left, .ad-space-right {
+        display: none;
+    }
+
+    body {
+        font-size: 15px;
+    }
+
+    h1 { font-size: 1.5em; }
+    h2 { font-size: 1.2em; }
+
+    .skills {
+        column-count: 1;
+    }
+
+    .character-sheet {
+        margin: 10px;
+        padding: 15px;
+    }
+}

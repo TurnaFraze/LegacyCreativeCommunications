@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fiction Fights Trading Card Game</title>
+  <style>
+    /* Trading Card Game Theme CSS */
+
+    :root {
+      --card-border: #b8860b;
+      --card-bg: #f8f0d8;
+      --card-inner-border: #c9b179;
+      --card-text: #3a2e1c;
+      --card-name-bg: #e6d5a5;
+      --card-stats-bg: rgba(232, 218, 178, 0.8);
+      --foil-highlight: rgba(255, 255, 255, 0.3);
+      --card-shadow: rgba(0, 0, 0, 0.5);
+      --energy-blue: #4a90e2;
+      --location-green: #50b45c;
+      --rare-gold: #ffd700;
+      --omen-purple: #8a2be2;
+      --relic-brown: #8b4513;
+    }
+
+    /* General Page Styling */
+    body {
+      background-color: #2a3246;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233f4a67' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+      color: var(--card-text);
+      padding: 20px;
+      margin: 0;
+    }
+
+    /* Header Image Container */
+    .header-container {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto 2rem;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px var(--card-shadow);
+    }
+
+    /* Header Image - Preserves aspect ratio */
+    .header-image {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Card Collection Container */
+    .card-collection {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Individual Card Styling */
+    .card {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 2.5/4.0;
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 
+        0 5px 15px var(--card-shadow),
+        0 0 0 8px var(--card-border);
+    }
+
+    /* Card Hover Effect */
+    .card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 
+        0 15px 30px var(--card-shadow),
+        0 0 0 8px var(--card-border);
+      z-index: 10;
+    }
+
+    /* Card Inner Border */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border: 2px solid var(--card-inner-border);
+      border-radius: 8px;
+      pointer-events: none;
+    }
+
+    /* Card Image Container */
+    .card-image-container {
+      height: 55%;
+      overflow: hidden;
+      border-bottom: 3px solid var(--card-inner-border);
+      background-color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Card Content */
+    .card-content {
+      padding: 10px;
+      height: 45%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Card Name */
+    .card-name {
+      background-color: var(--card-name-bg);
+      padding: 4px 8px;
+      margin: -2px -8px 8px;
+      border-radius: 3px;
+      font-weight: bold;
+      font-size: 1rem;
+      display: flex;
+      justify-content: space-between;
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-type {
+      font-size: 0.7rem;
+      opacity: 0.7;
+      align-self: center;
+    }
+
+    /* Card Description */
+    .card-description {
+      font-size: 0.8rem;
+      line-height: 1.2;
+      flex-grow: 1;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--card-inner-border) transparent;
+      padding-right: 5px;
+      font-style: italic;
+    }
+
+    /* Card Stats */
+    .card-stats {
+      display: flex;
+      justify-content: space-between;
+      background-color: var(--card-stats-bg);
+      padding: 4px 8px;
+      margin: 8px -8px -8px;
+      border-radius: 3px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    /* Card Rarity Indicator */
+    .card-rarity {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: var(--rare-gold);
+      box-shadow: 0 0 10px var(--rare-gold);
+    }
+
+    /* Foil Effect */
+    .foil::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        135deg,
+        transparent 0%,
+        var(--foil-highlight) 30%,
+        transparent 60%,
+        var(--foil-highlight) 100%
+      );
+      background-size: 200% 200%;
+      animation: foilShine 3s ease infinite;
+      pointer-events: none;
+      border-radius: 12px;
+      opacity: 0.4;
+    }
+
+    @keyframes foilShine {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+
+    /* Card Type Indicators */
+    .protagonist-card {
+      box-shadow: 
+        0 5px 15px var(--card-shadow),
+        0 0 0 8px var(--energy-blue);
+    }
+
+    .location-card {
+      box-shadow: 
+        0 5px 15px var(--card-shadow),
+        0 0 0 8px var(--location-green);
+    }
+    
+    .omen-card {
+      box-shadow: 
+        0 5px 15px var(--card-shadow),
+        0 0 0 8px var(--omen-purple);
+    }
+    
+    .relic-card {
+      box-shadow: 
+        0 5px 15px var(--card-shadow),
+        0 0 0 8px var(--relic-brown);
+    }
+
+    /* Game Title */
+    .game-title {
+      text-align: center;
+      color: #f8f0d8;
+      font-size: 2.5rem;
+      margin: 1rem 0;
+      font-family: 'Trajan Pro', 'Times New Roman', serif;
+      text-shadow: 0 0 10px rgba(184, 134, 11, 0.7);
+      letter-spacing: 3px;
+    }
+
+    .game-subtitle {
+      text-align: center;
+      color: #c9b179;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .card-collection {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 15px;
+      }
+      
+      .card-name {
+        font-size: 0.9rem;
+      }
+      
+      .card-description {
+        font-size: 0.7rem;
+      }
+    }
+
+.image-frame {
+  width: 500px; /* Match the width of the provided image */
+  height: 853px; /* Match the height of the provided image */
+  background-color: #f5f5dc; /* Optional: Add a background color for the frame */
+  border: 5px solid #000; /* Optional: Add a border around the frame */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Optional: Add a shadow for depth */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Ensure the image doesn't overflow the frame */
+}
+
+.image-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image fills the frame without distortion */
+}
+  </style>
+</head>
+<body>
+  <h2 class="game-subtitle">Powered by</h2>
+  <h1 class="game-title">LEGACY</h1>
+  <h2 class="game-subtitle">Life happens between the benchmarks</h2>
+  
+  <div class="header-container">
+    <img src="FFights_IMG/fictionfights.png" alt="Legacy Trading Card Game" class="header-image">
+  </div>
+
+  <div class="card-collection">
+    <!-- Protagonist Card -->
+    <div class="card protagonist-card">
+      <div class="card-image-container">
+        <img src="FFights_IMG/Alice in Wonderland.png" alt="The Arcstrider" class="card-image">
+      </div>
+      <div class="card-content">
+        <div class="card-name">
+          <span>The Premise</span>
+          <span class="card-type">Protagonist</span>
+        </div>
+        <div class="card-description">
+          What if you could draft history’s greatest heroes, villains, and misfits… and throw them into a cosmic tournament of absurd trials?
+        </div>
+        <div class="card-stats">
+          <span>Resolve: 4</span>
+          <span>Energy: 3</span>
+        </div>
+      </div>
+      <div class="card-rarity"></div>
+    </div>
+    
+    <!-- Location Card -->
+    <div class="card location-card">
+      <div class="card-image-container">
+        <img src="FFights_IMG/Frankenstein.png" alt="Forgotten Sanctuary" class="card-image">
+      </div>
+      <div class="card-content">
+        <div class="card-name">
+          <span>The how</span>
+          <span class="card-type">Location</span>
+        </div>
+        <div class="card-description">
+          Summon Fiction from the Public Domain, Equip them with Plot Devices, and send them into competition.
+        </div>
+        <div class="card-stats">
+          <span>Victory: 2</span>
+          <span>Defense: 3</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Omen Card -->
+    <div class="card omen-card foil">
+      <div class="card-image-container">
+        <img src="FFights_IMG/Arthurian Legend.png" alt="Whispers of Regret" class="card-image">
+      </div>
+      <div class="card-content">
+        <div class="card-name">
+          <span>The Why</span>
+          <span class="card-type">Omen</span>
+        </div>
+        <div class="card-description">
+          Stories are like stars, they can guide us. If we Listen.
+        </div>
+        <div class="card-stats">
+          <span>Power: 3</span>
+          <span>Duration: 2</span>
+        </div>
+      </div>
+    </div>
+    
+  
+    
+    <!-- Antagonist Card -->
+    <div class="card">
+      <div class="card-image-container">
+        <img src="FFights_IMG/Dracula.png" alt="Shadow of Doubt" class="card-image">
+      </div>
+      <div class="card-content">
+        <div class="card-name">
+          <span>The Who</span>
+          <span class="card-type">Antagonist</span>
+        </div>
+        <div class="card-description">
+         Characters from throughout history have been lost to the public domain. It is our duty, as Arcstriders, to bring them back to their former glory. Or Someone else's.
+        </div>
+        <div class="card-stats">
+          <span>Threat: 5</span>
+          <span>Weakness: Truth</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Destiny Card -->
+    <div class="card foil">
+      <div class="card-image-container">
+        <img src="FFights_IMG/robot.png" alt="Final Reckoning" class="card-image">
+      </div>
+      <div class="card-content">
+        <div class="card-name">
+          <span>The When</span>
+          <span class="card-type">Destiny</span>
+        </div>
+        <div class="card-description">
+          ASAP... Stay Tuned
+        </div>
+        <div class="card-stats">
+          <span>Victory: 6</span>
+          <span>Challenge: 5</span>
+        </div>
+      </div>
+      <div class="card-rarity"></div>
+    </div>
+  
+<!-- Relic Card -->
+    <div class="card relic-card">
+      <div class="card-image-container">
+        <img src="FFights_IMG/Medieval1.png" alt="Memory Stone" class="card-image">
+      </div>
+      <div class="card-content">
+        <div class="card-name">
+          <span>The Example</span>
+          <span class="card-type">Relic</span>
+        </div>
+        <div class="card-description">
+          <li>Would Dracula outcook H.G. Wells in an Iron Chef battle?</li>
+          <li>Could Sherlock Holmes out-hack Captain Nemo on a steam-powered computer?</li>
+        </div>
+        <div class="card-stats">
+          <span>Charges: 3</span>
+          <span>Value: 2</span>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
+
+
+
+
+      <!-- Introduction Section -->
+   <html>
+<body>
+
+        <h2 style="color: white";>What is Fiction Fights™?</h2>
+        <p style="color: white";> What if you could draft history’s greatest heroes, villains, and misfits… and throw them into a cosmic tournament of absurd trials?</p>
+        <ul>
+          <li style="color: white";>Would Dracula outcook H.G. Wells in an Iron Chef battle?</li>
+          <li style="color: white";>Could Sherlock Holmes out-hack Captain Nemo on a steam-powered computer?</li>
+        </ul>
+        <p style="color: white";><strong>Only one way to find out.</strong></p>
+      </div>
+
+
+      <!-- Arena Section -->
+      <section class="section">
+        <h2 style="color: white";> Enter the Arena of Ideas</h2>
+        <p style="color: white";>This ain’t your grandpa’s trading card game.</p>
+        <p style="color: white";><strong>Fiction Fights™</strong> is a deck-based strategy brawler where:</p>
+        <ul>
+          <li style="color: white";>Characters from the public domain are your units.</li>
+          <li style="color: white";>Plot devices are your gear.</li>
+          <li style="color: white";>Trials of legend are the battlefield.</li>
+        </ul>
+      </section>
+
+      <!-- Gameplay Section -->
+      <section class="section">
+        <h2 style="color: white";> How It Works</h2>
+        <ul>
+          <li style="color: white";>Summon iconic figures like Robin Hood, Joan of Arc, and Dr. Jekyll.</li>
+          <li style="color: white";>Equip them with time-bending gadgets, cursed relics, or divine inspiration.</li>
+          <li style="color: white";>Compete in ridiculous trials across myth, literature, and pop culture.</li>
+        </ul>
+        <p style="color: white";>Built on the bones of classic TCGs, fueled by nostalgia, and wired with modern chaos.</p>
+        <p style="color: white";><strong>This is where fiction fights back.</strong></p>
+      </section>
+    </main>
+<div class="image-frame">
+  <img src="strides/JaneEyre.png" alt="Card Image">
+</div>
+
+<div class="mainbox">
+<h3 style="color: white";>Fiction Fights is a Narrative Driven TCG I am developing.
+Currently, The Arcstrider is making his rounds recruiting. <p style="color: white";>
+  You can watch him recruit players for Arcstrider's Arena, 
+  <a href="https://www.facebook.com/profile.php?id=100025663193707" target="_blank">here</a>.
+</p>
+</h3>
+<br>
+
+<br><div class="image-frame">
+  <img src="strides/Dracula.png" alt="Card Image">
+</div>
+<h3 style="color: white";>Summon Fiction from the public domain into your party and prepare for Narrative Battle.
+<br>
+Equip them with legendary items, like Excalibur, or Popeye's Spinach.
+<br>
+Challenge Antagonists, your opponent's protagonist cards, to narrative duels depending on the location and scenario.
+<br>
+<div class="image-frame">
+  <img src="strides/TheCreature.png" alt="Card Image">
+</div>
+Do you have the skill, or the gear, to rise to the challenge?
+</h3>
+<br>
+<h3 style="color: white";>
+<p style="color: white";>Fiction fights is being developed, and marketed by, Legacy Creative Communications. I am a sole developer on a quest to bring people back to the days of sitting around, swapping stories. It's time to take the social back from social media.</p>
+</div>
+    <!-- Footer -->
+    <footer class="footer">
+      <p style="color: white";>&copy; 2025 Fiction Fights™. All rights reserved.</p>
+    </footer>
+  </div>
+<p style="color:white">Fiction fights is being developed, and marketed by, Legacy Creative Communications. I am a sole developer on a quest to bring people back to the days of sitting around, swapping stories. It's time to take the social back from social media.</p>
+
+<p style="color:white"> I appreciate your time, and thank you for visiting my little webpage.</p>
+</body>
+<div class="section">
+<a href="https://www.paypal.com/paypalme/TurnaFraze?country.x=US&locale.x=en_US" target="_blank" style="text-decoration: none;">
+  <button style="
+    background-color: #0070ba;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;">
+    💙 Donate via PayPal
+  </button>
+</a>
+</div>
+<body>
+</html>

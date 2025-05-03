@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>D&D 5e Character Creator (Kid-Friendly)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+
+<link href="https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy:400,400i&display=swap" rel="stylesheet">
+    
+    <!-- Then link your CSS file -->
+    <link rel="stylesheet" href="character-sheet.css">
+</head>
+<body>
+
+<div class="page-container">
+    <aside class="ad-space-left">
+   <img src="path-to-your-arcstrider-image.jpg" alt="description">
+    </aside>
+
+<main class="character-sheet">
+  <h1>D&D 5e Character Creator</h1>
+  <p style="text-align:center; color:#444;">
+    Answer each question to make a character!<br>
+    <em>No confusing math—just pick, play, and go!</em>
+  </p>
+
+  <!-- Character core info first -->
+  <form id="char-form">
+    <div class="section">
+      <label for="race">
+        Race
+        <span class="help-icon" data-help="Your character's ancestry. Each race provides different bonuses and abilities.">?</span>
+      </label>
+      <br><select id="race" name="race" required>
+        <option value="">Select a race...</option>
+        <option>Human</option>
+        <option>Elf</option>
+        <option>Dwarf</option>
+        <option>Halfling</option>
+        <option>Half-Orc</option>
+        <option>Dragonborn</option>
+        <option>Gnome</option>
+        <option>Half-Elf</option>
+        <option>Tiefling</option>
+      </select>
+
+      <label for="class">
+        Class
+        <span class="help-icon" data-help="Your character's profession or calling. Each class determines what your character can do.">?</span>
+      </label>
+      <br><select id="class" name="class" required>
+        <option value="">Select a class...</option>
+        <option>Barbarian</option>
+        <option>Bard</option>
+        <option>Cleric</option>
+        <option>Druid</option>
+        <option>Fighter</option>
+        <option>Monk</option>
+        <option>Paladin</option>
+        <option>Ranger</option>
+        <option>Rogue</option>
+        <option>Sorcerer</option>
+        <option>Warlock</option>
+        <option>Wizard</option>
+      </select>
+
+      <label for="background">
+        Background
+        <span class="help-icon" data-help="Your character's life before adventuring. Gives starting skills and proficiencies.">?</span>
+      </label>
+      <br><select id="background" name="background" required>
+        <option value="">Select a background...</option>
+        <option>Acolyte</option>
+        <option>Charlatan</option>
+        <option>Criminal</option>
+        <option>Entertainer</option>
+        <option>Folk Hero</option>
+        <option>Guild Artisan</option>
+        <option>Hermit</option>
+        <option>Noble</option>
+        <option>Outlander</option>
+        <option>Sage</option>
+        <option>Sailor</option>
+        <option>Soldier</option>
+        <option>Urchin</option>
+      </select>
+    </div>
+
+    <!-- ==== SCENARIO-BASED QUESTIONNAIRE (12 SCENARIOS) ==== -->
+    <div class="section">
+      <h2>Personality Scenarios</h2>
+      <div class="question">
+        <label>A heavy gate blocks your path. What do you do?</label>
+        <br><select id="q1">
+          <option value="Strength">Try to force it open</option>
+          <option value="Intelligence">Look for a lever or mechanism</option>
+          <option value="Dexterity">Attempt to climb over it</option>
+        </select>
+      </div>
+      <div class="question">
+        <label>You are caught in a sudden storm. What is your first response?</label>
+        <br><select id="q2">
+          <option value="Constitution">Seek immediate shelter</option>
+          <option value="Wisdom">Observe the patterns of the storm</option>
+          <option value="Strength">Try to find the weakest point to push through</option>
+        </select>
+      </div>
+      <div class="question">
+        <label>Someone is trying to deceive your group. How do you react?</label>
+        <br><select id="q3">
+          <option value="Intelligence">Question their inconsistencies</option>
+          <option value="Wisdom">Rely on your gut feeling about them</option>
+          <option value="Charisma">Try to intimidate them into telling the truth</option>
+        </select>
+      </div>
+      <div class="question">
+        <label>You need to navigate a treacherous cliff face. How do you proceed?</label>
+        <br><select id="q4">
+          <option value="Intelligence">Carefully plan your route</option>
+          <option value="Dexterity">Rely on your agility and balance</option>
+          <option value="Constitution">Endure the physical strain</option>
+        </select>
+      </div>
+      <div class="question">
+        <label>A tense negotiation is underway. What is your approach?</label>
+        <br><select id="q5">
+          <option value="Intelligence">Present logical arguments</option>
+          <option value="Charisma">Appeal to emotions and build rapport</option>
+          <option value="Strength">Stand firm and unyielding</option>
+        </select>
+      </div>
+      <div class="question">
+        <label>You discover a strange and unfamiliar creature. What do you do?</label>
+        <br><select id="q6">
+          <option value="Wisdom">Try to understand its behavior</option>
+          <option value="Dexterity">Attempt to capture it</option>
+          <option value="Constitution">Observe its physical resilience</option>
+        </select>
+      </div>
+      <div class="question">
+        <label>Your group is lost in a dense forest. What is your plan?</label>
+        <br><select id="q7">
+          <option value="Intelligence">Try to recall landmarks</option>
+          <option value="Wisdom">Trust your instincts to find the way</option>
+          <option value="Charisma">Maintain the group's spirits</option>
+        </select>
+      </div>
+      <div class="question">
+        <label>You need to disarm a dangerous trap. How do you attempt this?</label>
+        <br><select id="q8">
+          <option value="Intelligence">Carefully analyze its components</option>
+          <option value="Dexterity">Use nimble fingers to manipulate it</option>
+          <option value="Strength">Try to break it open with force</option>
+        </select>
+      </div>
+      <div class="question">
+        <label>A debate breaks out within your party. What do you do?</label>
+        <br><select id="q9">
+          <option value="Intelligence">Present a well-reasoned argument</option>
+          <option value="Charisma">Mediate and find a compromise</option>
+          <option value="Wisdom">Side with the most reasonable argument based on your understanding</option>
+        </select>
+      </div>
+      <div class="question">
+        <label>You are faced with a physically demanding challenge. Your strategy?</label>
+        <br><select id="q10">
+          <option value="Constitution">Rely on your endurance</option>
+          <option value="Intelligence">Use leverage and technique</option>
+          <option value="Strength">Apply brute force</option>
+        </select>
+      </div>
+      <div class="question">
+        <label>You need to make a persuasive argument. Your method?</label>
+        <br><select id="q11">
+          <option value="Intelligence">Use logic and facts</option>
+          <option value="Charisma">Employ charm and influence</option>
+          <option value="Strength">Speak with conviction and authority</option>
+        </select>
+      </div>
+      <div class="question">
+        <label>You are trying to track a fleeing target. How do you proceed?</label>
+        <br><select id="q12">
+          <option value="Wisdom">Follow its subtle tracks and signs</option>
+          <option value="Dexterity">Move swiftly and silently</option>
+          <option value="Constitution">Maintain your stamina during the pursuit</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="button" id="generate-btn">Generate Character Sheet</button>
+  </form>
+
+  <div id="output">
+    <h2>Your Character Sheet</h2>
+    <div id="summary"></div>
+    <h2>Ability Scores</h2>
+    <div id="stat-block"></div>
+    <div id="extras"></div>
+  </div>
+
+  <div id="help-panel">
+    Hover over a stat or field for help.
+  </div>
+
+  <script>
+    // Ability logic for scenario questionnaire
+    const abilityScores = {
+      Strength: 0, Dexterity: 0, Constitution: 0, Intelligence: 0, Wisdom: 0, Charisma: 0
+    };
+    const questionAbilities = [
+      "q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8", "q9", "q10", "q11", "q12"
+    ];
+
+    function getAbilityTotalsScenario() {
+      // Reset
+      for (let key in abilityScores) abilityScores[key] = 0;
+      questionAbilities.forEach(qid => {
+        const val = document.getElementById(qid).value;
+        if (val && abilityScores.hasOwnProperty(val)) abilityScores[val]++;
+      });
+      return { ...abilityScores };
+    }
+
+    function mapTotalsToStatsScenario(totals) {
+      // Highest total gets highest stat, ties handled by order Strength > Dex > Con > Int > Wis > Cha
+      const standardArray = [15, 14, 13, 12, 10, 8];
+      const order = Object.keys(totals).sort((a, b) => (totals[b] - totals[a]) || (["Strength","Dexterity","Constitution","Intelligence","Wisdom","Charisma"].indexOf(a) - ["Strength","Dexterity","Constitution","Intelligence","Wisdom","Charisma"].indexOf(b)));
+      const stats = {};
+      order.forEach((ability, i) => {
+        stats[ability] = standardArray[i];
+      });
+      return stats;
+    }
+
+    function getModifier(score) {
+      const mod = Math.floor((score - 10) / 2);
+      return (mod >= 0 ? "+" : "") + mod;
+    }
+
+    // Race bonuses as before, just mapping ability names now
+    const raceBonuses = {
+      'Human':     { Strength: 1, Dexterity: 1, Constitution: 1, Intelligence: 1, Wisdom: 1, Charisma: 1 },
+      'Elf':       { Dexterity: 2 },
+      'Dwarf':     { Constitution: 2 },
+      'Halfling':  { Dexterity: 2 },
+      'Half-Orc':  { Strength: 2, Constitution: 1 },
+      'Dragonborn':{ Strength: 2, Charisma: 1 },
+      'Gnome':     { Intelligence: 2 },
+      'Half-Elf':  { Charisma: 2, PLUS: 1 },
+      'Tiefling':  { Charisma: 2, Intelligence: 1 }
+    };
+    const classHitDie = {
+      'Barbarian': 12, 'Bard': 8, 'Cleric': 8, 'Druid': 8, 'Fighter': 10, 'Monk': 8,
+      'Paladin': 10, 'Ranger': 10, 'Rogue': 8, 'Sorcerer': 6, 'Warlock': 8, 'Wizard': 6
+    };
+
+    function applyRaceBonuses(stats, race) {
+      const bonuses = raceBonuses[race];
+      if (!bonuses) return { ...stats };
+      let finalStats = { ...stats };
+      Object.entries(bonuses).forEach(([key, val]) => {
+        if (key !== "PLUS") finalStats[key] = (finalStats[key] || 0) + val;
+      });
+      // Half-Elf: +2 CHA, +1 to two others (not CHA)
+      if (race === "Half-Elf" && bonuses.PLUS === 1) {
+        let abOrder = ["Strength","Dexterity","Constitution","Intelligence","Wisdom"];
+        abOrder.sort((a, b) => (finalStats[a] || 0) - (finalStats[b] || 0));
+        finalStats[abOrder[0]] += 1;
+        finalStats[abOrder[1]] += 1;
+      }
+      return finalStats;
+    }
+
+    function generateStatBlock(stats, withRacial = true, race = "") {
+      let finalStats = withRacial ? applyRaceBonuses(stats, race) : stats;
+      let html = `<table id="stat-block-table"><tr>`;
+      for (const ab of ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma']) html += `<th>${ab}</th>`;
+      html += `</tr><tr>`;
+      for (const ab of ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma']) html += `<td>${finalStats[ab] ?? 8} <small>(${getModifier(finalStats[ab] ?? 8)})</small></td>`;
+      html += `</tr></table>`;
+      html += `<div class="math-explain">(${withRacial ? 'Final after race bonuses.' : 'Base scores before race.'})</div>`;
+      return html;
+    }
+
+    function generateSummary(formElements) {
+      const race = formElements['race'] ? formElements['race'].value : '';
+      const clazz = formElements['class'] ? formElements['class'].value : '';
+      const background = formElements['background'] ? formElements['background'].value : '';
+      let html = `<div class="summary-row"><b>Race:</b> ${race || "(not selected)"}</div>
+                  <div class="summary-row"><b>Class:</b> ${clazz || "(not selected)"}</div>
+                  <div class="summary-row"><b>Background:</b> ${background || "(not selected)"}</div>`;
+      return html;
+    }
+
+    function generateExtras(stats, race, clazz) {
+      let finalStats = applyRaceBonuses(stats, race);
+      let conMod = Math.floor((finalStats.Constitution ?? 8 - 10) / 2);
+      let hitDie = classHitDie[clazz] || 8;
+      let hp = hitDie + conMod;
+      let wisMod = Math.floor((finalStats.Wisdom ?? 8 - 10) / 2);
+      let passivePerception = 10 + wisMod;
+      let profBonus = "+2";
+      let html = `
+        <div class="summary-row"><b>Starting Hit Points (HP):</b> ${hp > 0 ? hp : hitDie} <span class="math-explain">(d${hitDie} + CON mod)</span></div>
+        <div class="summary-row"><b>Passive Perception:</b> ${passivePerception} <span class="math-explain">(10 + WIS mod)</span></div>
+        <div class="summary-row"><b>Proficiency Bonus:</b> ${profBonus} <span class="math-explain">(Level 1 default)</span></div>
+      `;
+      return html;
+    }
+
+    document.getElementById('generate-btn').addEventListener('click', function() {
+      const formElements = document.getElementById('char-form').elements;
+      const totals = getAbilityTotalsScenario();
+      const baseStats = mapTotalsToStatsScenario(totals);
+      const race = formElements['race'] ? formElements['race'].value : '';
+      const clazz = formElements['class'] ? formElements['class'].value : '';
+      document.getElementById('summary').innerHTML = generateSummary(formElements);
+      document.getElementById('stat-block').innerHTML =
+        generateStatBlock(baseStats, false) + generateStatBlock(baseStats, true, race);
+      document.getElementById('extras').innerHTML = generateExtras(baseStats, race, clazz);
+      document.getElementById('output').style.display = 'block';
+      window.scrollTo({ top: document.getElementById('output').offsetTop - 20, behavior: 'smooth' });
+    });
+;
+    // Tooltip/Help Panel logic
+    document.querySelectorAll('.help-icon').forEach(function(el) {
+      el.addEventListener('mouseenter', function() {
+        document.getElementById('help-panel').innerText = el.getAttribute('data-help');
+      });
+      el.addEventListener('mouseleave', function() {
+        document.getElementById('help-panel').innerText = "Hover over a stat or field for help.";
+      });
+      el.addEventListener('focus', function() {
+        document.getElementById('help-panel').innerText = el.getAttribute('data-help');
+      });
+      el.addEventListener('blur', function() {
+        document.getElementById('help-panel').innerText = "Hover over a stat or field for help.";
+      });
+    });
+
+function fillCodePenSheet({
+  characterName = "",
+  clazz = "",
+  background = "",
+  playerName = "",
+  race = "",
+  alignment = "",
+  experiencePoints = "",
+  stats, // {Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma}
+  modifiers, // {Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma}
+  proficiencyBonus = "+2",
+  passivePerception,
+  hp,
+}) {
+  // Class & Level
+  document.querySelector('[name="classlevel"]').value = clazz ? (clazz + " 1") : "";
+  // Background
+  document.querySelector('[name="background"]').value = background || "";
+  // Player Name
+  document.querySelector('[name="playername"]').value = playerName || "";
+  // Race
+  document.querySelector('[name="race"]').value = race || "";
+  // Alignment
+  document.querySelector('[name="alignment"]').value = alignment || "";
+  // Experience Points
+  document.querySelector('[name="experiencepoints"]').value = experiencePoints || "0";
+  // Character Name
+  document.querySelector('[name="charname"]').value = characterName || "";
+
+  // Ability scores and modifiers
+  document.querySelector('[name="Strengthscore"]').value = stats.Strength ?? "";
+  document.querySelector('[name="Dexterityscore"]').value = stats.Dexterity ?? "";
+  document.querySelector('[name="Constitutionscore"]').value = stats.Constitution ?? "";
+  document.querySelector('[name="Intelligencescore"]').value = stats.Intelligence ?? "";
+  document.querySelector('[name="Wisdomscore"]').value = stats.Wisdom ?? "";
+  document.querySelector('[name="Charismascore"]').value = stats.Charisma ?? "";
+
+  document.querySelector('[name="Strengthmod"]').value = modifiers.Strength ?? "";
+  document.querySelector('[name="Dexteritymod"]').value = modifiers.Dexterity ?? "";
+  document.querySelector('[name="Constitutionmod"]').value = modifiers.Constitution ?? "";
+  document.querySelector('[name="Intelligencemod"]').value = modifiers.Intelligence ?? "";
+  document.querySelector('[name="Wisdommod"]').value = modifiers.Wisdom ?? "";
+  document.querySelector('[name="Charismamod"]').value = modifiers.Charisma ?? "";
+
+  // Proficiency Bonus
+  document.querySelector('[name="proficiencybonus"]').value = proficiencyBonus;
+  // Passive Perception
+  document.querySelector('[name="passiveperception"]').value = passivePerception;
+  // HP
+  if (document.querySelector('[name="maxhp"]'))
+    document.querySelector('[name="maxhp"]').value = hp > 0 ? hp : "";
+}
+
+document.getElementById('generate-btn').addEventListener('click', function() {
+    const formElements = document.getElementById('char-form').elements;
+    const totals = getAbilityTotalsScenario();
+    const baseStats = mapTotalsToStatsScenario(totals);
+    const race = formElements['race'] ? formElements['race'].value : '';
+    const clazz = formElements['class'] ? formElements['class'].value : '';
+    
+
+    // Update top summary/stat blocks
+    document.getElementById('summary').innerHTML = generateSummary(formElements);
+    document.getElementById('stat-block').innerHTML =
+      generateStatBlock(baseStats, false) + generateStatBlock(baseStats, true, race);
+    document.getElementById('extras').innerHTML = generateExtras(baseStats, race, clazz);
+    document.getElementById('output').style.display = 'block';
+    window.scrollTo({ top: document.getElementById('output').offsetTop - 20, behavior: 'smooth' });
+
+    // Calculate final stats after racial bonuses
+    const finalStats = applyRaceBonuses(baseStats, race);
+    // Calculate modifiers
+    const modifiers = {};
+    for (const ab of Object.keys(finalStats)) {
+      const mod = Math.floor((finalStats[ab] - 10) / 2);
+      modifiers[ab] = (mod >= 0 ? "+" : "") + mod;
+    }
+    // Calculate HP and Passive Perception
+    const hitDie = classHitDie[clazz] || 8;
+    const conMod = Math.floor((finalStats.Constitution ?? 8 - 10) / 2);
+    const hp = hitDie + conMod;
+    const wisMod = Math.floor((finalStats.Wisdom ?? 8 - 10) / 2);
+    const passivePerception = 10 + wisMod;
+
+    // Fill CodePen sheet
+    fillCodePenSheet({
+      characterName: "", // Add field if you want to support this!
+      clazz,
+      background: formElements['background'] ? formElements['background'].value : "",
+      playerName: "", // Add field if you want to support this!
+      race: formElements['race'] ? formElements['race'].value : "",
+      alignment: "", // Add field if you want to support this!
+      experiencePoints: "0",
+      stats: finalStats,
+      modifiers,
+      proficiencyBonus: "+2",
+      passivePerception,
+      hp
+    });
+  });
+
+  // Tooltip/Help Panel logic (unchanged)
+  document.querySelectorAll('.help-icon').forEach(function(el) {
+    el.addEventListener('mouseenter', function() {
+      document.getElementById('help-panel').innerText = el.getAttribute('data-help');
+    });
+    el.addEventListener('mouseleave', function() {
+      document.getElementById('help-panel').innerText = "Hover over a stat or field for help.";
+    });
+    el.addEventListener('focus', function() {
+      document.getElementById('help-panel').innerText = el.getAttribute('data-help');
+    });
+    el.addEventListener('blur', function() {
+      document.getElementById('help-panel').innerText = "Hover over a stat or field for help.";
+    });
+  });
+
+  // fillCodePenSheet function (unchanged)
+  </script>
+
+
+<div id="output">
+  <h2>Your Character Sheet</h2>
+  <div id="summary"></div>
+  <h2>Ability Scores</h2>
+  <div id="stat-block"></div>
+  <div id="extras"></div>
+</div>
+
+<!-- === ADD THIS (CodePen D&D 5e character sheet) === -->
+<form class="charsheet" autocomplete="off">
+
+    
+  
+    <section class="misc">
+      <ul>
+        <li>
+          <label for="classlevel">
+            Class & Level
+            <span class="help-icon" data-help="Your class and current level. Level 1 for new characters.">?</span>
+          </label>
+          <input name="classlevel" placeholder="Barbarian 1" />
+        </li>
+        <li>
+          <label for="background">
+            Background
+            <span class="help-icon" data-help="Your character's life before adventuring.">?</span>
+          </label>
+          <input name="background" placeholder="Acolyte" />
+        </li>
+        <li>
+          <label for="playername">
+            Player Name
+            <span class="help-icon" data-help="Who is playing this character?">?</span>
+          </label>
+          <input name="playername" placeholder="You!">
+        </li>
+        <li>
+          <label for="race">
+            Race
+            <span class="help-icon" data-help="Your character's ancestry.">?</span>
+          </label>
+          <input name="race" placeholder="Elf" />
+        </li>
+        <li>
+          <label for="alignment">
+            Alignment
+            <span class="help-icon" data-help="Your hero's moral outlook, like Good, Lawful, Chaotic, etc.">?</span>
+          </label>
+          <input name="alignment" placeholder="Good" />
+        </li>
+        <li>
+          <label for="experiencepoints">
+            Experience Points
+            <span class="help-icon" data-help="Track your XP to level up!">?</span>
+          </label>
+          <input name="experiencepoints" placeholder="0" />
+        </li>
+      </ul>
+    </section>
+ 
+  <div class="sheet-section">
+    <section>
+      <section class="attributes">
+        <div class="scores">
+          <ul>
+            <li>
+              <div class="score">
+                <label for="Strengthscore">
+                  Strength
+                  <span class="help-icon" data-help="Physical power and how hard you can hit or lift.">?</span>
+                </label>
+                <input name="Strengthscore" placeholder="10" class="stat"/>
+              </div>
+              <div class="modifier">
+                <input name="Strengthmod" placeholder="+0" class="statmod"/>
+              </div>
+            </li>
+            <li>
+              <div class="score">
+                <label for="Dexterityscore">
+                  Dexterity
+                  <span class="help-icon" data-help="Agility, reflexes, and balance.">?</span>
+                </label>
+                <input name="Dexterityscore" placeholder="10" class="stat"/>
+              </div>
+              <div class="modifier">
+                <input name="Dexteritymod" placeholder="+0" class="statmod"/>
+              </div>
+            </li>
+            <li>
+              <div class="score">
+                <label for="Constitutionscore">
+                  Constitution
+                  <span class="help-icon" data-help="Endurance, health, and stamina.">?</span>
+                </label>
+                <input name="Constitutionscore" placeholder="10" class="stat"/>
+              </div>
+              <div class="modifier">
+                <input name="Constitutionmod" placeholder="+0" class="statmod"/>
+              </div>
+            </li>
+            <li>
+              <div class="score">
+                <label for="Wisdomscore">
+                  Wisdom
+                  <span class="help-icon" data-help="Perception, intuition, and insight.">?</span>
+                </label>
+                <input name="Wisdomscore" placeholder="10" class="stat"/>
+              </div>
+              <div class="modifier">
+                <input name="Wisdommod" placeholder="+0" class="statmod"/>
+              </div>
+            </li>
+            <li>
+              <div class="score">
+                <label for="Intelligencescore">
+                  Intelligence
+                  <span class="help-icon" data-help="Reasoning, memory, and knowledge.">?</span>
+                </label>
+                <input name="Intelligencescore" placeholder="10" class="stat"/>
+              </div>
+              <div class="modifier">
+                <input name="Intelligencemod" placeholder="+0" class="statmod"/>
+              </div>
+            </li>
+            <li>
+              <div class="score">
+                <label for="Charismascore">
+                  Charisma
+                  <span class="help-icon" data-help="Charm, confidence, and leadership.">?</span>
+                </label>
+                <input name="Charismascore" placeholder="10" class="stat"/>
+              </div>
+              <div class="modifier">
+                <input name="Charismamod" placeholder="+0" class="statmod"/>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- (rest of CodePen sheet as needed) -->
+      </section>
+      <!-- Add more sections here as needed for the full sheet -->
+    </section>
+ 
+
+<!-- Additional Character Sheet Sections -->
+<section class="additional-stats">
+  <div class="saving-throws">
+    <h3>Saving Throws</h3>
+    <ul>
+      <li>
+        <input type="checkbox" name="str-save-prof" />
+        <input type="text" name="str-save" class="stat-mod" placeholder="+0" />
+        <label>Strength</label>
+      </li>
+      <li>
+        <input type="checkbox" name="dex-save-prof" />
+        <input type="text" name="dex-save" class="stat-mod" placeholder="+0" />
+        <label>Dexterity</label>
+      </li>
+      <li>
+        <input type="checkbox" name="con-save-prof" />
+        <input type="text" name="con-save" class="stat-mod" placeholder="+0" />
+        <label>Constitution</label>
+      </li>
+      <li>
+        <input type="checkbox" name="int-save-prof" />
+        <input type="text" name="int-save" class="stat-mod" placeholder="+0" />
+        <label>Intelligence</label>
+      </li>
+      <li>
+        <input type="checkbox" name="wis-save-prof" />
+        <input type="text" name="wis-save" class="stat-mod" placeholder="+0" />
+        <label>Wisdom</label>
+      </li>
+      <li>
+        <input type="checkbox" name="cha-save-prof" />
+        <input type="text" name="cha-save" class="stat-mod" placeholder="+0" />
+        <label>Charisma</label>
+      </li>
+    </ul>
+  </div>
+
+
+<div class="skills">
+    <h3>Skills</h3>
+    <ul>
+        <li><input type="checkbox" name="acrobatics-prof" /><input type="text" name="acrobatics" class="stat-mod" placeholder="+0" /><label>Acrobatics (Dex)</label></li>
+        <li><input type="checkbox" name="animal-handling-prof" /><input type="text" name="animal-handling" class="stat-mod" placeholder="+0" /><label>Animal Handling (Wis)</label></li>
+        <li><input type="checkbox" name="arcana-prof" /><input type="text" name="arcana" class="stat-mod" placeholder="+0" /><label>Arcana (Int)</label></li>
+        <li><input type="checkbox" name="athletics-prof" /><input type="text" name="athletics" class="stat-mod" placeholder="+0" /><label>Athletics (Str)</label></li>
+        <li><input type="checkbox" name="deception-prof" /><input type="text" name="deception" class="stat-mod" placeholder="+0" /><label>Deception (Cha)</label></li>
+        <li><input type="checkbox" name="history-prof" /><input type="text" name="history" class="stat-mod" placeholder="+0" /><label>History (Int)</label></li>
+        <li><input type="checkbox" name="insight-prof" /><input type="text" name="insight" class="stat-mod" placeholder="+0" /><label>Insight (Wis)</label></li>
+        <li><input type="checkbox" name="intimidation-prof" /><input type="text" name="intimidation" class="stat-mod" placeholder="+0" /><label>Intimidation (Cha)</label></li>
+        <li><input type="checkbox" name="investigation-prof" /><input type="text" name="investigation" class="stat-mod" placeholder="+0" /><label>Investigation (Int)</label></li>
+        <li><input type="checkbox" name="medicine-prof" /><input type="text" name="medicine" class="stat-mod" placeholder="+0" /><label>Medicine (Wis)</label></li>
+        <li><input type="checkbox" name="nature-prof" /><input type="text" name="nature" class="stat-mod" placeholder="+0" /><label>Nature (Int)</label></li>
+        <li><input type="checkbox" name="perception-prof" /><input type="text" name="perception" class="stat-mod" placeholder="+0" /><label>Perception (Wis)</label></li>
+        <li><input type="checkbox" name="performance-prof" /><input type="text" name="performance" class="stat-mod" placeholder="+0" /><label>Performance (Cha)</label></li>
+        <li><input type="checkbox" name="persuasion-prof" /><input type="text" name="persuasion" class="stat-mod" placeholder="+0" /><label>Persuasion (Cha)</label></li>
+        <li><input type="checkbox" name="religion-prof" /><input type="text" name="religion" class="stat-mod" placeholder="+0" /><label>Religion (Int)</label></li>
+        <li><input type="checkbox" name="sleight-of-hand-prof" /><input type="text" name="sleight-of-hand" class="stat-mod" placeholder="+0" /><label>Sleight of Hand (Dex)</label></li>
+        <li><input type="checkbox" name="stealth-prof" /><input type="text" name="stealth" class="stat-mod" placeholder="+0" /><label>Stealth (Dex)</label></li>
+        <li><input type="checkbox" name="survival-prof" /><input type="text" name="survival" class="stat-mod" placeholder="+0" /><label>Survival (Wis)</label></li>
+    </ul>
+</div>
+  <div class="combat-stats">
+    <h3>Combat</h3>
+    <ul>
+      <li>
+        <label>Initiative</label>
+        <input type="text" name="initiative" placeholder="+0" />
+      </li>
+      <li>
+        <label>Armor Class</label>
+        <input type="text" name="armor-class" placeholder="10" />
+      </li>
+      <li>
+        <label>Speed</label>
+        <input type="text" name="speed" placeholder="30" />
+      </li>
+    </ul>
+  </div>
+
+  <div class="equipment">
+    <h3>Equipment</h3>
+    <textarea name="equipment" placeholder="Weapons, armor, and other items..."></textarea>
+  </div>
+
+  <div class="features">
+    <h3>Features & Traits</h3>
+    <textarea name="features" placeholder="Class features, racial traits, etc..."></textarea>
+  </div>
+
+  <div class="personality">
+    <h3>Personality</h3>
+    <div>
+      <label>Traits</label>
+      <textarea name="personality-traits" placeholder="Character traits..."></textarea>
+    </div>
+    <div>
+      <label>Ideals</label>
+      <textarea name="ideals" placeholder="Character ideals..."></textarea>
+    </div>
+    <div>
+      <label>Bonds</label>
+      <textarea name="bonds" placeholder="Character bonds..."></textarea>
+    </div>
+    <div>
+      <label>Flaws</label>
+      <textarea name="flaws" placeholder="Character flaws..."></textarea>
+    </div>
+  </div>
+</section>
+
+</form>
+
+<script src="character-generator2.js"></script>
+
+<section class="dnd-projects">
+    <h2>Other D&D Tools & Projects</h2>
+    
+    <div class="project-grid">
+        <div class="project-card">
+            <img src="arcstrider.png" alt="Arcstrider on Facebook">
+            <h3>Arcstrider</h3>
+            <p class="interest-level">Interest Level: ★★★★☆</p>Arcstrider is a creative innovation studio crafting tools, stories, and experiences that spark momentum. From character-driven systems to community-driven design—this is where ideas evolve into action.Calculate spell slots and manage your spellbook with ease.</p>
+            <a href="#" class="https://www.facebook.com/profile.php?id=100025663193707">Check it out →</a>
+        </div>
+
+        <div class="project-card">
+            <img src="encounter-builder.jpg" alt="Encounter Builder">
+            <h3>Encounter Builder</h3>
+            <p class="interest-level">Interest Level: ★★★★★</p>
+            <p class="description">Build balanced random encounters for your party level.</p>
+            <a href="#" class="project-link">Build Encounter →</a>
+        </div>
+
+        <div class="project-card">
+            <img src="npc-generator.jpg" alt="NPC Generator">
+            <h3>VibeCheck</h3>
+            <p class="interest-level">Interest Level: ★★★☆☆</p>
+            <p class="description">Vibecheck is the street-level pulse of local business. Real people, real reviews—based on value, vibe, and focus. No fluff. Just truth.</p>
+            <a href="#" class="project-link">Generate NPC →</a>
+        </div>
+    </div>
+</section>
+</main>
+
+<aside class="ad-space-right">
+       <img src="images/FictionFights_right_ad_space.jpg" alt="description">
+    </aside>
+</div>
+<div class="section">
+<a href="https://www.paypal.com/paypalme/TurnaFraze?country.x=US&locale.x=en_US" target="_blank" style="text-decoration: none;">
+  <button style="
+    background-color: #0070ba;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;">
+    💙 Donate via PayPal
+  </button>
+</a>
+</div>
+</body>
+</html>

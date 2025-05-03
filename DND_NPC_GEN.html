@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantasy Character Creator</title>
+    <link rel="stylesheet" href="css/y2k-style.css">
+</head>
+
+<body>
+    <div class="page-container">
+        <!-- Left Ad Banner -->
+        <div class="ad-left">
+            <div class="ad-title">ARCSTRIDER</div>
+            <div class="ad-image-container">
+                <img src="images/arcstrider_left_ad_space.jpg" alt="Arcstrider">
+            </div>
+            <span class="ad-badge">HOT!</span>
+            <p class="flashing-text">Check it out now!</p>
+            <a href="https://www.facebook.com/profile.php?id=100025663193707" target="_blank">
+                <button>Arc Strider</button>
+            </a>
+            <div class="counter">Visitors: 12,345</div>
+        </div>
+            <div class="main-content">
+            <h1>Fantasy Generator</h1>
+            <p style="text-align: center;">Choose what you want to generate and answer the questions to reveal your unique fantasy creation.</p>
+
+            <p style="text-align: center;"><h1>〚 The Arcstrider's Fiction Factory 〛</h1><br><br>
+                Recovered from the data-ashes of the First Epoch.<br><br>
+                Believed to be one of the earliest artifacts connected to the Legacy Engine.<br><br>
+
+                "In the Time Before Narrative, before structure, before the great Binding of Tropes… there walked the Arcstrider.<br><br>
+                A traveler of thought. A witness of fiction. A builder of beasts."<br><br>
+
+                Herein lies a relic — a minor instrument forged from the immense power of the Legacy System.<br><br>
+                Though humble in form, its function is divine: to conjure character from choice, essence from answer, form from fragments of the psyche.<br><br>
+
+                Answer the questions — not as you are, but as the one you could become.<br><br>
+                Generate the prompts — echoes of what was, reflections of what could be.<br><br>
+                Reveal the image — your creation, your creature, your story made flesh.<br><br>
+
+                From these elements, a form will arise.<br><br>
+                A presence.<br><br>
+                A myth.<br><br>
+                <br><br>
+                What challenging task awaits you?<br><br>
+                <br><br>And what will they say about you… <br><br>when the pixels settle...<br><br> and the tale is told?
+            </p>
+
+            <div class="section">
+                <h2>What are you looking for?</h2>
+                <div class="question">
+                    <select id="generator-type">
+                        <option value="character">Character prompt</option>
+                        <option value="creature">Creature prompt</option>
+                        <option value="environment">Environment prompt</option>
+                    </select>
+                </div>
+            </div>
+
+           <form id="char-form">
+        <div class="section">
+            <h2>Power & Purpose</h2>
+
+            <div class="question">
+                <label>A battle looms, and the war council looks to you for guidance.
+                    How do you respond?</label>
+                <select id="leadership">
+                    <option value="1">Take full control</option>
+                    <option value="2">Take a leading role</option>
+                    <option value="3">Openly speak my opinion</option>
+                    <option value="4">Share my views during open discussion</option>
+                    <option value="5">Encourage others to speak up</option>
+                    <option value="6">Act on behalf of those who cannot act for themselves</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label>The village's food stores are running low, and the people are hungry.
+                    How do you handle the remaining supplies?</label>
+                <select id="resource">
+                    <option value="1">Secure for self</option>
+                    <option value="2">Lean towards securing for self</option>
+                    <option value="3">Take more than my share</option>
+                    <option value="4">Take only my share</option>
+                    <option value="5">Lean towards even distribution</option>
+                    <option value="6">Distribute everything evenly</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label>A mysterious map promises great fortune—but also great danger.
+                    Do you take the risk?</label>
+                <select id="risk">
+                    <option value="1">Take risks for greater power</option>
+                    <option value="2">Leans toward risk-taking</option>
+                    <option value="3">Takes 'safe' risks</option>
+                    <option value="4">Doesn't willingly take risks</option>
+                    <option value="5">Is overly cautious</option>
+                    <option value="6">Completely avoid risk</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Wisdom & Adaptation</h2>
+
+            <div class="question">
+                <label>The enemy strikes unexpectedly, and there's no time to plan.
+                    How do you decide your next move?</label>
+                <select id="decision">
+                    <option value="1">Rely fully on past experience</option>
+                    <option value="2">Trust proven strategies</option>
+                    <option value="3">Weigh both experience and innovation</option>
+                    <option value="4">Experiment cautiously</option>
+                    <option value="5">Try new approaches frequently</option>
+                    <option value="6">Rely heavily on new ideas and change</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label>You enter a land unlike any you've seen before, with customs and dangers unknown.
+                    How do you navigate the unfamiliar?</label>
+                <select id="uncertainty">
+                    <option value="1">Stick with proven methods</option>
+                    <option value="2">Lean towards familiar territory</option>
+                    <option value="3">Choose stability with some flexibility</option>
+                    <option value="4">Try new paths occasionally</option>
+                    <option value="5">Embrace change regularly</option>
+                    <option value="6">Seek out the unfamiliar and unknown</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label>Your latest endeavor ends in failure.
+                    What lesson do you take from it?</label>
+                <select id="failure">
+                    <option value="1">Reflect deeply and gain wisdom</option>
+                    <option value="2">Analyze thoroughly before moving forward</option>
+                    <option value="3">Balance reflection with adaptation</option>
+                    <option value="4">Adapt quickly but learn somewhat</option>
+                    <option value="5">Move on without much reflection</option>
+                    <option value="6">Avoid reflection entirely, focus on moving forward</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Connection & Impact</h2>
+
+            <div class="question">
+                <label>A stranger seeks your friendship,
+                    offering loyalty in return. What kind of bond do you form?</label>
+                <select id="relationships">
+                    <option value="1">Focus fully on deep, lasting bonds</option>
+                    <option value="2">Prioritize close, meaningful relationships</option>
+                    <option value="3">Balance between
+                        deep and broad connections</option>
+                    <option value="4">Enjoy broader, social relationships</option>
+                    <option value="5">Prefer casual and fleeting interactions</option>
+                    <option value="6">Keep most connections distant or surface-level</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label>The people look to you as a leader, even when you didn't ask for it.
+                    How do you wield your influence?</label>
+                <select id="influence">
+                    <option value="1">Actively aim for lasting influence</option>
+                    <option value="2">Frequently seek to make an impact</option>
+                    <option value="3">Contribute meaningfully when possible</option>
+                    <option value="4">Prefer small, quiet contributions</option>
+                    <option value="5">Rarely seek to influence others</option>
+                    <option value="6">Prefer to remain in the background</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label>A beggar collapses at your feet, desperate for aid.
+                    How do you respond?</label>
+                <select id="compassion">
+                    <option value="1">Take immediate action to help</option>
+                    <option value="2">Offer consistent support</option>
+                    <option value="3">Balance empathy with action</option>
+                    <option value="4">Show compassion but avoid involvement</option>
+                    <option value="5">Feel sympathy but remain passive</option>
+                    <option value="6">Stay distant, feeling unaffected</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Action & Method</h2>
+
+            <div class="question">
+                <label>A mission must be completed, and time is short.
+                    Do you charge in or meticulously plan?</label>
+                <select id="execution">
+                    <option value="1">Strictly follow plans and methods</option>
+                    <option value="2">Favor structured strategies</option>
+                    <option value="3">Balance structure with flexibility</option>
+                    <option value="4">Use some planning, but adapt frequently</option>
+                    <option value="5">Prefer spontaneous, free-flowing action</option>
+                    <option value="6">Act impulsively without much planning</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label>The king entrusts you with a delicate task requiring both care and speed.
+                    Which do you prioritize?</label>
+                <select id="work_ethic">
+                    <option value="1">Prioritize thoroughness and precision</option>
+                    <option value="2">Focus on detailed, careful execution</option>
+                    <option value="3">Balance accuracy and efficiency</option>
+                    <option value="4">Aim for efficiency with some attention to detail</option>
+                    <option value="5">Prioritize speed over precision</option>
+                    <option value="6">Rush to completion, sacrificing accuracy</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label>You stand before an ancient puzzle.
+                    Do you solve it methodically or break it open?</label>
+                <select id="efficiency">
+                    <option value="1">Prioritize maximum efficiency</option>
+                    <option value="2">Lean towards productivity over creativity</option>
+                    <option value="3">Balance efficiency and creativity equally</option>
+                    <option value="4">Favor creative solutions with some efficiency</option>
+                    <option value="5">Lean towards creative exploration</option>
+                    <option value="6">Prioritize creativity, even if it reduces efficiency</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Truth & Identity</h2>
+
+            <div class="question">
+                <label>The ruling order asks
+                    you to forsake your beliefs for a place of power.
+                    Do you accept?</label>
+                <select id="authenticity">
+                    <option value="1">Stay fully authentic, no matter the cost</option>
+                    <option value="2">Prioritize authenticity over fitting in</option>
+                    <option value="3">Balance authenticity with social adaptation</option>
+                    <option value="4">Adapt occasionally but keep core values</option>
+                    <option value="5">Fit in regularly, authenticity comes second</option>
+                    <option value="6">Frequently mask my true self to belong</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label>A bard sings of your deeds—but the tale is nothing like the truth.
+                    Does it matter?</label>
+                <select id="self_perception">
+                    <option value="1">Define myself by my own standards only</option>
+                    <option value="2">Rely mostly on personal self-assessment</option>
+                    <option value="3">Balance personal view with external feedback</option>
+                    <option value="4">Consider others' views but trust my own</option>
+                    <option value="5">Heavily influenced by others' opinions</option>
+                    <option value="6">Define myself by how others see me</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label>Your most sacred values are challenged before a great audience.
+                    Do you stand firm or adapt?</label>
+                <select id="values_conflict">
+                    <option value="1">Stand fully by my values, regardless of consequence</option>
+                    <option value="2">Hold to my values even under pressure</option>
+                    <option value="3">Balance values
+                        with social acceptance</option>
+                    <option value="4">Compromise slightly for social harmony</option>
+                    <option value="5">Frequently compromise to avoid conflict</option>
+                    <option value="6">Conform completely to fit in</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Growth & Balance</h2>
+
+            <div class="question">
+                <label>A mentor
+                    offers to teach you, but it requires abandoning your current path.
+                    Do you embrace the change?</label>
+                <select id="personal_growth">
+                    <option value="1">Always push for growth and improvement</option>
+                    <option value="2">Frequently seek self-betterment</option>
+                    <option value="3">Balance growth with stability</option>
+                    <option value="4">Welcome growth occasionally</option>
+                    <option value="5">Prefer contentment over constant change</option>
+                    <option value="6">Value stability and avoid major growth efforts</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label>The road ahead is long, and your companions wish to rest.
+                    Do you push on or take time to recover?</label>
+                <select id="work_balance">
+                    <option value="1">Prioritize career advancement fully</option>
+                    <option value="2">Favor work-related growth</option>
+                    <option value="3">Balance work and personal life equally</option>
+                    <option value="4">Lean towards personal well-being</option>
+                    <option value="5">Prioritize personal life over work</option>
+                    <option value="6">Fully prioritize well-being over career growth</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label>The world shifts around you, traditions crumble, and new ways arise.
+                    How do you react?</label>
+                <select id="adaptation">
+                    <option value="1">Embrace change fully and eagerly</option>
+                    <option value="2">Welcome change with little resistance</option>
+                    <option value="3">Balance change with stability</option>
+                    <option value="4">Adapt slowly but accept it</option>
+                    <option value="5">Resist most changes</option>
+                    <option value="6">Reject change to preserve stability</option>
+                </select>
+            </div>
+        </div>
+
+                <button type="button" onclick="randomFill()">Random Fill</button>
+                <button type="button" id="generateBtn">Generate Your Creation</button>
+            </form>
+
+            <!-- Results section -->
+            <div id="result" style="display: none;">
+                <h2 id="result-title"></h2>
+                <pre id="character-description"></pre>
+                <!-- Added D&D Stats section -->
+                <h3>D&D Character Stats</h3>
+                <pre id="dnd-stats"></pre>
+            </div>
+        </div>
+
+        <!-- Right Ad Banner -->
+        <div class="ad-right">
+            <div class="ad-title">FICTION FIGHTS</div>
+            <div class="ad-image-container">
+                <img src="FictionFights_right_ad_space.jpg" alt="Fiction Fights">
+            </div>
+            <span class="ad-badge">NEW!</span>
+            <p class="flashing-text">Join the battle!</p>
+            <a href="workbook.html" target="_blank" style="text-decoration: none;">
+            <button>Fiction Fights</button>
+            <div class="counter">Players online: 784</div>
+        </div>
+    </div>
+
+    <footer>
+        © 2025 Lance West. All rights reserved.
+        This tool is provided for personal, non-commercial use only.
+        You may not copy, modify, distribute, or reverse-engineer any part of the code or interface without explicit written permission from the author.
+        The source code is proprietary and not publicly available. By using this tool, you agree to these terms.
+    </footer>
+
+    <script>
+        // Character Data
+        const characterData = {
+            "head": [
+                "Worn leather coif",
+                "Iron helm with nasal guard",
+                "Hood pulled low",
+                "Steel sallet, visor up",
+                "Bronze circlet with etched runes",
+                "Cloth headwrap, bandana-style"
+            ],
+            "eyes": [
+                "Sharp, alert eyes",
+                "Calm, watchful gaze",
+                "Eyes with faint glint of magic",
+                "Hawk-like eyes",
+                "Piercing blue eyes",
+                "Kind, unassuming eyes"
+            ],
+            "arms": [
+                "Bracers of boiled leather",
+                "Simple linen wraps",
+                "Armguard and shortbow string marks",
+                "Rolled-up sleeves, calloused hands",
+                "One gauntlet, one bare",
+                "Sleeves torn at the elbow"
+            ],
+            "torso": [
+                "Padded gambeson",
+                "Chainmail shirt",
+                "Reinforced jerkin",
+                "Leather cuirass with metal studs",
+                "Doublet beneath a travel-worn cloak",
+                "Tattered tabard over scale mail"
+            ],
+            "legs": [
+                "Woolen trousers with patches",
+                "Greaves strapped over boots",
+                "Quilted pants with travel stains",
+                "Canvas breeches, muddy",
+                "Soft leather pants, knee guards",
+                "Sturdy boots and leggings"
+            ],
+            "wings_tail": [
+                "No wings or tail",
+                "Tattered cloak like a tail",
+                "Short, furred tail (beastfolk?)",
+                "Long cloak flows like wings",
+                "None",
+                "Tail wrapped in cloth (for balance)"
+            ]
+        };
+
+        // Creature Data
+        const creatureData = {
+            "head": [
+                "Helmet fused to skull",
+                "Third eye on the forehead",
+                "Beaked",
+                "Long Tongue",
+                "Horns like a ram's",
+                "Teeth like shark fangs"
+            ],
+            "eyes": [
+                "crosseyed",
+                "Catlike eyes",
+                "four-eyes in a ring (glasses? ...or?)",
+                "Fly's compound lenses",
+                "Eyes glowing ember-orange",
+                "Mismatched eyes"
+            ],
+            "arms": [
+                "Arms covered in tattoos",
+                "One hand skeletal, one fleshy",
+                "Fingers ending in quills",
+                "Extra arms from shoulders",
+                "One arm with a weapon in place of a hand",
+                "Shimmering metal fingertip Claws"
+            ],
+            "torso": [
+                "Chest plated in stone",
+                "Glowing sigil set in sternum",
+                "Transparent chest with inner fire",
+                "Spine ridged like a stegosaurus",
+                "Crystal shards embedded in shoulder",
+                "Bone harness fused to body"
+            ],
+            "legs": [
+                "Glowing circuitry inside legs",
+                "One leg mechanical",
+                "Hooved feet with etched glyphs",
+                "Vines spiraling up the thighs",
+                "Feet with six clawed toes",
+                "Ankles in rusted shackles"
+            ],
+            "wings_tail": [
+                "Wings made of torn banners",
+                "Tail like a serpent",
+                "Dragonfly wings",
+                "Thorned vine tendrils from back",
+                "Tail of shadow",
+                "Nothing Special"
+            ]
+        };
+
+        // Environment Data
+        const environmentData = {
+            "foreground": [
+                "Ancient cobblestone path",
+                "Winding dirt trail",
+                "Scattered ruins",
+                "Market stalls, abandoned",
+                "Fallen statue, overgrown",
+                "Rocky outcropping"
+            ],
+            "structures": [
+                "Crumbling stone tower",
+                "Wooden bridge over ravine",
+                "Thatched cottage with smoke",
+                "Castle battlements",
+                "Cliffside monastery",
+                "Stone archway, ivy-covered"
+            ],
+            "vegetation": [
+                "Gnarled oak trees",
+                "Mushroom circle",
+                "Twisted vines and flowers",
+                "Giant ferns and moss",
+                "Phosphorescent fungi",
+                "Wild berry bushes"
+            ],
+            "weather": [
+                "Storm clouds gathering",
+                "Golden sunset",
+                "Stars unusually bright",
+                "Heavy fog rolling in",
+                "Aurora in the sky",
+                "Double moons visible"
+            ],
+            "water": [
+                "Misty waterfall",
+                "Bubbling brook",
+                "Sacred hot spring",
+                "Still lake reflecting sky",
+                "Flooded ancient temple",
+                "River crossing with stepping stones"
+            ],
+            "mystical": [
+                "Floating crystal shards",
+                "Portal with swirling energy",
+                "Rune-marked standing stones",
+                "Wisps of colored light",
+                "Whispering spirit trees",
+                "Time-frozen objects"
+            ]
+        };
+
+        // Function to calculate D&D stats from questionnaire responses
+        function calculateStat(values) {
+            // Calculate average of the values
+            const sum = values.reduce((total, val) => total + val, 0);
+            const avg = sum / values.length;
+            
+            // Convert to D&D stat range (typically 3-18)
+            // Using 7-17 as a reasonable range (slightly narrower than 3-18)
+            // Formula: 7 + ((6-avg)/5 * 10)
+            // This makes lower questionnaire values (1) map to higher stats (17)
+            // and higher questionnaire values (6) map to lower stats (7)
+            const stat = Math.round(17 - ((avg - 1) * 2));
+            
+            // Ensure stats stay within reasonable bounds
+            return Math.max(6, Math.min(18, stat));
+        }
+
+        function randomFill() {
+            const form = document.getElementById("char-form");
+            const groups = {};
+
+            // Handle radio buttons
+            form.querySelectorAll('input[type="radio"]').forEach(input => {
+                if (!groups[input.name]) groups[input.name] = [];
+                groups[input.name].push(input);
+            });
+
+            Object.values(groups).forEach(inputs => {
+                const random = Math.floor(Math.random() * inputs.length);
+                inputs[random].checked = true;
+            });
+
+            // Handle dropdowns (select elements)
+            form.querySelectorAll('select').forEach(select => {
+                const options = select.options;
+                const randomIndex = Math.floor(Math.random() * options.length);
+                select.selectedIndex = randomIndex;
+            });
+        }
+
+        // Fix the event listener to match the correct button ID
+        document.getElementById("generateBtn").addEventListener("click", function() {
+            const generatorType = document.getElementById("generator-type").value;
+            const formElements = document.getElementById("char-form").elements;
+            
+            // Get all the values from the questionnaire
+            const values = {};
+            for (let i = 0; i < formElements.length; i++) {
+                if (formElements[i].tagName === "SELECT" && formElements[i].id !== "generator-type") {
+                    values[formElements[i].id] = formElements[i].value;
+                }
+            }
+            
+            // Calculate weighted average of answers to determine which element to pick from each category
+            const elementIndices = {};
+            
+            // This is a simplified approach, just using 5 representative questions to determine indices
+            const questionGroups = [
+                ["leadership", "resource", "risk"], // For first element
+                ["decision", "uncertainty", "failure"], // For second element
+                ["relationships", "influence", "compassion"], // For third element
+                ["execution", "work_ethic", "efficiency"], // For fourth element
+                ["authenticity", "self_perception", "values_conflict"], // For fifth element
+                ["personal_growth", "work_balance", "adaptation"] // For sixth element
+            ];
+            
+            // Calculate indices for each element
+            for (let i = 0; i < questionGroups.length; i++) {
+                let sum = 0;
+                let count = 0;
+                
+                for (const question of questionGroups[i]) {
+                    if (values[question]) {
+                        sum += parseInt(values[question]);
+                        count++;
+                    }
+                }
+                
+                // Get the average and round to nearest integer (1-6)
+                let index = Math.round(sum / count) - 1;
+                if (index < 0) index = 0;
+                if (index > 5) index = 5;
+                
+                elementIndices[i] = index;
+            }
+            
+            // Generate the description based on the generator type
+            let description = "";
+            let resultTitle = "";
+            let tableData = {};
+            
+            if (generatorType === "character") {
+                resultTitle = "Your Character Description";
+                tableData = {
+                    "Head": characterData.head[elementIndices[0]],
+                    "Eyes": characterData.eyes[elementIndices[1]],
+                    "Arms": characterData.arms[elementIndices[2]],
+                    "Torso": characterData.torso[elementIndices[3]],
+                    "Legs": characterData.legs[elementIndices[4]],
+                    "Wings/Tail": characterData.wings_tail[elementIndices[5]]
+                };
+            } else if (generatorType === "creature") {
+                resultTitle = "Your Creature Description";
+                tableData = {
+                    "Head": creatureData.head[elementIndices[0]],
+                    "Eyes": creatureData.eyes[elementIndices[1]],
+                    "Arms": creatureData.arms[elementIndices[2]],
+                    "Torso": creatureData.torso[elementIndices[3]],
+                    "Legs": creatureData.legs[elementIndices[4]],
+                    "Wings/Tail": creatureData.wings_tail[elementIndices[5]]
+                };
+            } else if (generatorType === "environment") {
+                resultTitle = "Your Environment Description";
+                tableData = {
+                    "Foreground/Path": environmentData.foreground[elementIndices[0]],
+                    "Structures": environmentData.structures[elementIndices[1]],
+                    "Vegetation": environmentData.vegetation[elementIndices[2]],
+                    "Weather/Sky": environmentData.weather[elementIndices[3]],
+                    "Water Feature": environmentData.water[elementIndices[4]],
+                    "Mystical Element": environmentData.mystical[elementIndices[5]]
+                };
+            }
+
+            
+            // Format the description
+            for (const category in tableData) {
+                description += `\n🧩 ${category}:\n`;
+                description += `- ${tableData[category]}\n`;
+            }
+            
+            // Update the result display
+            document.getElementById("result-title").textContent = resultTitle;
+            document.getElementById("character-description").textContent = description.trim();
+            document.getElementById("result").style.display = "block";
+            
+            // Remove any existing table and create a new one
+            const existingTable = document.querySelector("#result table");
+            if (existingTable) {
+                existingTable.remove();
+            }
+            
+            // Create and populate the new table
+            const table = document.createElement('table');
+            table.innerHTML = `
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            `;
+            const tbody = table.querySelector('tbody');
+            
+            for (const category in tableData) {
+                const row = document.createElement('tr');
+                const categoryCell = document.createElement('td');
+                categoryCell.textContent = category;
+                row.appendChild(categoryCell);
+                
+                const descCell = document.createElement('td');
+                descCell.textContent = tableData[category];
+                row.appendChild(descCell);
+                
+                tbody.appendChild(row);
+            }
+            
+            document.getElementById("result").appendChild(table);
+            
+            // Generate D&D Stats
+            const leadership = parseInt(document.getElementById('leadership').value);
+            const resource = parseInt(document.getElementById('resource').value);
+            const risk = parseInt(document.getElementById('risk').value);
+            const decision = parseInt(document.getElementById('decision').value);
+            const uncertainty = parseInt(document.getElementById('uncertainty').value);
+            const failure = parseInt(document.getElementById('failure').value);
+            const relationships = parseInt(document.getElementById('relationships').value);
+            const influence = parseInt(document.getElementById('influence').value);
+            const compassion = parseInt(document.getElementById('compassion').value);
+            const execution = parseInt(document.getElementById('execution').value);
+            const workEthic = parseInt(document.getElementById('work_ethic').value);
+            const efficiency = parseInt(document.getElementById('efficiency').value);
+            const authenticity = parseInt(document.getElementById('authenticity').value);
+            const selfPerception = parseInt(document.getElementById('self_perception').value);
+            const valuesConflict = parseInt(document.getElementById('values_conflict').value);
+            const personalGrowth = parseInt(document.getElementById('personal_growth').value);
+            const workLifeBalance = parseInt(document.getElementById('work_balance').value);
+            const adaptation = parseInt(document.getElementById('adaptation').value);
+            
+            let strength = calculateStat([leadership, resource, risk]);
+            let dexterity = calculateStat([execution, workEthic, efficiency]);
+            let constitution = calculateStat([personalGrowth, workLifeBalance, adaptation]);
+            let intelligence = calculateStat([decision, uncertainty, failure]);
+            let wisdom = calculateStat([relationships, influence, compassion]);
+            let charisma = calculateStat([authenticity, selfPerception, valuesConflict]);
+
+           
+
+
+// Helper function to calculate stats based on form responses
+function calculateStat(values) {
+    // Sum the values and return the total
+    const total = values.reduce((sum, value) => sum + value, 0);
+    return total;  // This now returns the sum.
+}
+
+
+ // Display the generated stats
+            const dndStats = `
+                Strength (STR): ${strength}
+                Dexterity (DEX): ${dexterity}
+                Constitution (CON): ${constitution}
+                Intelligence (INT): ${intelligence}
+                Wisdom (WIS): ${wisdom}
+                Charisma (CHA): ${charisma}
+            `;
+            document.getElementById('dnd-stats').innerText = dndStats;
+        });
+
+document.getElementById("class").addEventListener("change", function() {
+    const classSelect = document.getElementById("class");
+    const generateButton = document.getElementById("displayDnDStats");
+    
+    // Enable the "Generate" button when a class is selected
+    if (classSelect.value !== "") {
+        displayDnDStats.disabled = false; // Enable button
+    } else {
+        displayDnDStats.disabled = true; // Disable button if no class is selected
+    }
+});
+
+</script>
+
+</body>
+<div class="section">
+<a href="https://www.paypal.com/paypalme/TurnaFraze?country.x=US&locale.x=en_US" target="_blank" style="text-decoration: none;">
+  <button style="
+    background-color: #0070ba;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;">
+    💙 Donate via PayPal
+  </button>
+</a>
+</div>
+</html>
+The Arcstrider on Facebook

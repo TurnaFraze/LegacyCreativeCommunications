@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="workbook.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="workbook-container">
+    <header>
+      <h1 style= "color: white";>Legacy System Workbook</h1>
+      <pstyle= "color: white";>Track your character's transformation visually and interpret their scores.</p>
+    </header>
+
+    <section class="questionnaire">
+      <h2 style= "color: white";>Questionnaire</h2>
+      <form id="questionnaire-form">
+        <!-- Focus Axis -->
+        <fieldset>
+          <legend>Focus Axis: Drive & Execution</legend>
+          <label>Q1. How do you approach completing goals or tasks?</label>
+          <div>
+            <input type="radio" name="focus1" value="0" required> (0) I go with the flow, adjusting as needed<br>
+            <input type="radio" name="focus1" value="2"> (2) I aim for consistency, but stay flexible<br>
+            <input type="radio" name="focus1" value="4"> (4) I value structure and clarity<br>
+            <input type="radio" name="focus1" value="6"> (6) I create detailed plans and follow them closely<br>
+            <input type="radio" name="focus1" value="8"> (8) I pursue goals with high precision and efficiency
+          </div>
+          <label>Q2. When solving problems, what matters most?</label>
+          <div>
+            <input type="radio" name="focus2" value="0" required> (0) Comfort and adaptability<br>
+            <input type="radio" name="focus2" value="2"> (2) Minimizing conflict and friction<br>
+            <input type="radio" name="focus2" value="4"> (4) Getting to workable solutions<br>
+            <input type="radio" name="focus2" value="6"> (6) Getting the job done right<br>
+            <input type="radio" name="focus2" value="8"> (8) Fast, accurate execution and results
+          </div>
+        </fieldset>
+
+        <!-- Social Axis -->
+        <fieldset>
+          <legend>Social Axis: Social Bonds & Authenticity</legend>
+          <label>Q3. In relationships, what do you value most?</label>
+          <div>
+            <input type="radio" name="social1" value="0" required> (0) Independence with light connection<br>
+            <input type="radio" name="social1" value="2"> (2) Occasional emotional support<br>
+            <input type="radio" name="social1" value="4"> (4) Shared honesty and mutual respect<br>
+            <input type="radio" name="social1" value="6"> (6) Personal investment and deep honesty<br>
+            <input type="radio" name="social1" value="8"> (8) Deep, consistent emotional connection and authenticity
+          </div>
+          <label>Q4. How do you prefer to communicate with others?</label>
+          <div>
+            <input type="radio" name="social2" value="0" required> (0) Quick, transactional or minimal contact<br>
+            <input type="radio" name="social2" value="2"> (2) Straightforward, without much emotion<br>
+            <input type="radio" name="social2" value="4"> (4) Honest, but situational<br>
+            <input type="radio" name="social2" value="6"> (6) Thoughtful and emotionally tuned<br>
+            <input type="radio" name="social2" value="8"> (8) Empathetic, transparent, and personal
+          </div>
+        </fieldset>
+
+        <!-- Values Axis -->
+        <fieldset>
+          <legend>Values Axis: Social Understanding & Harmony</legend>
+          <label>Q5. How do you handle disagreements or differing opinions?</label>
+          <div>
+            <input type="radio" name="values1" value="0" required> (0) Stick to my position<br>
+            <input type="radio" name="values1" value="2"> (2) Hear others but stand firm<br>
+            <input type="radio" name="values1" value="4"> (4) Try to find balance<br>
+            <input type="radio" name="values1" value="6"> (6) Listen carefully and try to adapt<br>
+            <input type="radio" name="values1" value="8"> (8) Seek to fully understand and harmonize
+          </div>
+          <label>Q6. What’s your ideal way to support a group or team?</label>
+          <div>
+            <input type="radio" name="values2" value="0" required> (0) Maximize task efficiency<br>
+            <input type="radio" name="values2" value="2"> (2) Minimize noise and friction<br>
+            <input type="radio" name="values2" value="4"> (4) Ensure stability and order<br>
+            <input type="radio" name="values2" value="6"> (6) Consider everyone’s needs and input<br>
+            <input type="radio" name="values2" value="8"> (8) Create an environment of well-being, growth, and empathy
+          </div>
+        </fieldset>
+
+        <button type="button" id="generate-chart">Generate Radar Chart</button>
+      </form>
+    </section>
+
+    <section class="results">
+      <h2>Results</h2>
+      <canvas id="radarChart" width="400" height="400"></canvas>
+      <div id="interpretation">
+        <h3>Interpretation</h3>
+        <p id="focus-interpretation"></p>
+        <p id="social-interpretation"></p>
+        <p id="values-interpretation"></p>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2025 Legacy System Workbook. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('generate-chart').addEventListener('click', function () {
+      const form = document.getElementById('questionnaire-form');
+      const formData = new FormData(form);
+
+      // Calculate scores for each axis
+      const focus = parseInt(formData.get('focus1')) + parseInt(formData.get('focus2'));
+      const social = parseInt(formData.get('social1')) + parseInt(formData.get('social2'));
+      const values = parseInt(formData.get('values1')) + parseInt(formData.get('values2'));
+
+      // Radar chart setup
+      const ctx = document.getElementById('radarChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: ['Focus', 'Social', 'Values'],
+          datasets: [{
+            label: 'Character Profile',
+            data: [focus, social, values],
+            backgroundColor: 'rgba(0, 123, 255, 0.2)',
+            borderColor: 'rgba(0, 123, 255, 1)',
+            borderWidth: 2
+          }]
+        },
+        options: {
+          scale: {
+            ticks: {
+              beginAtZero: true,
+              max: 16
+            }
+          }
+        }
+      });
+
+      // Interpretations
+      const focusInterpretation = interpretScore(focus, [
+        "Highly adaptive, flexible, comfort-focused. Internal navigation > external targets.",
+        "Moderately adaptive, open to structure when needed.",
+        "Balanced: Values both clarity and adaptability.",
+        "Structured, task-oriented, values efficient systems.",
+        "Highly execution-focused, driven by precision, goal-completion, and process. Strong external orientation."
+      ]);
+
+      const socialInterpretation = interpretScore(social, [
+        "Detached or independent, prefers minimal social entanglement. Emotionally distant or pragmatic.",
+        "Casual and honest connection; selective in emotional engagement.",
+        "Balanced: Comfortable with both openness and independence.",
+        "Empathetic, values meaningful social bonds and emotional clarity.",
+        "Deeply driven by authenticity, empathy, and emotionally resonant communication. Strong external social attunement."
+      ]);
+
+      const valuesInterpretation = interpretScore(values, [
+        "Rigid, principle-first, may resist change or compromise. Ethics driven by fixed standards.",
+        "Open to other views, but prioritizes structure/stability.",
+        "Balanced: Maintains values while adapting to context.",
+        "Values flexibility, group harmony, and learning from others.",
+        "Deeply adaptable, seeks understanding and ethical consensus. Strong external and communal orientation."
+      ]);
+
+      document.getElementById('focus-interpretation').textContent = `Focus: ${focusInterpretation}`;
+      document.getElementById('social-interpretation').textContent = `Social: ${socialInterpretation}`;
+      document.getElementById('values-interpretation').textContent = `Values: ${valuesInterpretation}`;
+    });
+
+    function interpretScore(score, interpretations) {
+      if (score <= 3) return interpretations[0];
+      if (score <= 7) return interpretations[1];
+      if (score === 8) return interpretations[2];
+      if (score <= 12) return interpretations[3];
+      return interpretations[4];
+    }
+  </script>
+<div class="section">
+<a href="https://www.paypal.com/paypalme/TurnaFraze?country.x=US&locale.x=en_US" target="_blank" style="text-decoration: none;">
+  <button style="
+    background-color: #0070ba;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;">
+    💙 Donate via PayPal
+  </button>
+</a>
+</div>
+</body>
+</html>
