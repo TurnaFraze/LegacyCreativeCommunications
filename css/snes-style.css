@@ -1,0 +1,89 @@
+/* SNES-inspired styling */
+body {
+  font-family: 'Press Start 2P', sans-serif;
+  background-color: #7f7f7f; /* SNES gray */
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3 {
+  color: #ffcc00; /* SNES yellow */
+  text-shadow: 2px 2px #000000;
+  text-align: center;
+}
+
+button {
+  background-color: #ff0000; /* SNES red */
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: 'Press Start 2P', sans-serif;
+}
+
+button:hover {
+  background-color: #cc0000;
+}
+
+.section {
+  background-color: #3b3b3b; /* Dark gray */
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+label {
+  color: #00ccff; /* SNES cyan */
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+select {
+  background-color: #4b4b4b; /* Darker gray */
+  color: #ffffff;
+  border: 1px solid #00ccff;
+  padding: 10px;
+  border-radius: 4px;
+  font-family: 'Press Start 2P', sans-serif;
+}
+
+.score-bar {
+  background-color: #4b4b4b;
+  height: 20px;
+  border-radius: 10px;
+  margin: 10px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.score-fill {
+  height: 100%;
+  background-color: #ffcc00;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+/* Image Constraints */
+.thumbnail {
+  width: 150px; /* Set a consistent width */
+  height: 150px; /* Set a consistent height */
+  object-fit: cover; /* Ensures the image fills the area without distortion */
+  border-radius: 8px; /* Optional: Adds rounded corners */
+  margin-right: 20px; /* Adds spacing to the right of the image */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Adds a shadow for a polished look */
+}

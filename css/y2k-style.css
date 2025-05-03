@@ -1,0 +1,128 @@
+/* Y2K Aesthetic Styling */
+body {
+  font-family: 'Tahoma', sans-serif; /* Classic Y2K font */
+  background: linear-gradient(to bottom, #e0e0e0, #c0c0c0); /* Metallic gradient */
+  color: #000000;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1200px;
+  background-color: #ffffff; /* White content background */
+  border: 2px solid #a0a0a0; /* Metallic border */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+/* Header */
+.header {
+  background: linear-gradient(to bottom, #0078d7, #0056a3); /* Windows XP blue gradient */
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 36px;
+  margin: 0;
+}
+
+.header .tagline {
+  font-size: 18px;
+  margin: 5px 0 0;
+  font-style: italic;
+}
+
+/* Navigation */
+.navbar {
+  background-color: #0078d7; /* Windows XP blue */
+  padding: 10px 0;
+  text-align: center;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li {
+  display: inline;
+  margin: 0 15px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.navbar a:hover {
+  background-color: #ffffff;
+  color: #0078d7;
+}
+
+/* Sections */
+.section {
+  margin: 20px 0;
+  padding: 20px;
+  border: 2px solid #a0a0a0; /* Metallic border */
+  border-radius: 8px;
+  background: linear-gradient(to bottom, #ffffff, #f0f0f0); /* Subtle gradient */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section h2 {
+  color: #0078d7; /* Windows XP blue */
+  margin-top: 0;
+}
+
+/* Buttons */
+.button {
+  display: inline-block;
+  background: linear-gradient(to bottom, #e0e0e0, #c0c0c0); /* Metallic button */
+  color: #000000;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-weight: bold;
+  border: 2px solid #a0a0a0;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.button:hover {
+  background: linear-gradient(to bottom, #c0c0c0, #a0a0a0);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Footer */
+.footer {
+  background: linear-gradient(to bottom, #0078d7, #0056a3); /* Windows XP blue gradient */
+  color: #ffffff;
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 20px;
+  font-size: 14px;
+}
+/* Image Constraints */
+.thumbnail {
+  width: 150px; /* Set a consistent width */
+  height: 150px; /* Set a consistent height */
+  object-fit: cover; /* Ensures the image fills the area without distortion */
+  border-radius: 8px; /* Optional: Adds rounded corners */
+  margin-right: 20px; /* Adds spacing to the right of the image */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Adds a shadow for a polished look */
+}
